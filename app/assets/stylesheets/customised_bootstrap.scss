@@ -115,3 +115,13 @@ a.list-group-item:hover, a.list-group-item:focus, button.list-group-item:hover, 
 .btn-block-lg {
   padding: 15px 0px;
 }
+
+.container-fluid{
+  padding:0 !important;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px !important;
+  }
+}
