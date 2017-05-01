@@ -121,9 +121,9 @@
             type: remoteMethod
         "person[password]":
           required: true
-          minlength: 8
+          minlength: 6
         "person[password_confirmation]":
-          minlength: 8
+          minlength: 6
           equalTo : "#person_password"
         "person[terms]": 'required'
       messages:
