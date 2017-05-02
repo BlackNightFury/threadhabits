@@ -1,6 +1,5 @@
 //Import bootstrap-sprockets
 @import "bootstrap-sprockets";
-
 // import original bootstrap
 @import "bootstrap";
 
@@ -76,7 +75,10 @@
 }
 
 .panel-danger {
-  .panel-heading { color: white; background-color: $danger-color; }
+  .panel-heading {
+    color: white;
+    background-color: $danger-color;
+  }
   border-color: $danger-border-color;
 }
 
@@ -85,7 +87,9 @@
   border-radius: 0px;
   box-shadow: none;
   .panel-default {
-    .panel-heading { background-color: $success-color; }
+    .panel-heading {
+      background-color: $success-color;
+    }
   }
 }
 
@@ -117,12 +121,42 @@ a.list-group-item:hover, a.list-group-item:focus, button.list-group-item:hover, 
   padding: 15px 0px;
 }
 
-.container-fluid{
-  padding:0 !important;
+.container-fluid {
+  padding: 0 !important;
+}
+
+@media (min-width: 1200px) {
+  .container-fluid {
+    width: 1200px;
+  }
 }
 
 @media (min-width: 1200px) {
   .container {
     width: 1200px !important;
   }
+}
+
+.row {
+  margin: 0;
+}
+
+div.col-md-5.col-sm-5.col-xs-5.col-lg-5 {
+  padding-left: 0;
+}
+
+ul.nav.navbar-nav.navbar-right.col-md-5.col-xs-5.col-sm-5.col-lg-5 {
+  padding-right: 0 !important;
+}
+
+.sell-btn {
+  padding-right: 0 !important;
+}
+
+.container {
+  padding-left: 0;
+}
+
+ul.nav.navbar-nav.col-md-7.col-sm-7.col-xs-6.side-left-section{
+  
 }
