@@ -158,3 +158,8 @@ ul.nav.navbar-nav.navbar-right.col-md-5.col-xs-5.col-sm-5.col-lg-5 {
   padding-right: 0;
 }
 
+@media (min-width: 1200px) {
+  .listing-item {
+    width: 890px
+  }
+}
