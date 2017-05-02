@@ -34,22 +34,26 @@
 
 .listing-filters
   form
-    width: 263px
+    width: 300px
+    margin-left: -20px
   border-color: $default-color
   .panel-body
     font-size: 12px
-    padding: 7px
+    padding: 0
+    overflow-y: scroll
   .checkbox
     margin-top: 2px
     margin-bottom: 2px
   .field-strip:first-child
     margin-top: 0
   .panel-group
-    margin-bottom: 0
+    margin-bottom: 0px
   .field-strip
     background: $primary-color
     padding: 1px 10px
-    margin: 10px
+    margin: 5px
+    font-size: 13px
+    border-bottom: 1px solid black
     a
       color: $default-color
     span
@@ -138,3 +142,18 @@
         font-size: 22px
       .sellings
         color: $sell-color
+
+.collapse-filter-link
+  background: $primary-color
+  padding: 0 5px 5px 5px
+  margin: 10px
+  font-size: 13px
+  border-bottom: 1px solid #e8e8e8
+
+.collapse-filter-link-last
+  border-bottom: 0
+  padding-bottom: 0
+
+.collapse-filter-link span
+  float: right
+

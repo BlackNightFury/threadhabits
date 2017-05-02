@@ -473,6 +473,10 @@
         'min': [ 0 ]
         'max': [ 15000 ]
 
+    nonLinearSlider.noUiSlider.on 'end', (e) ->
+      console.log("end")
+      $("form").submit();
+
 
     nonLinearSlider.noUiSlider.on 'update', (values, handle, unencoded, isTap, positions) ->
       nodes[handle].innerHTML  = parseInt(values[handle])
@@ -480,12 +484,15 @@
 
       return
 
-    $('a.collapse-filter-link').on 'click', (e) ->
+    $('.collapse-filter-link').on 'click', (e) ->
       target = $(this).find("span")
-      if target.html() == "-"
-        target.html "+"
-      else
+      if target.html() == "+"
         target.html "-"
+      else
+        target.html "+"
+
+    $('input[type="checkbox"]').on 'click', (e) ->
+      $("form").submit();
 
     if Settings.getUrlParameter("filters[product_type]") == ""
       $(".listing-filters .in").each ->
