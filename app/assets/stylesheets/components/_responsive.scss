@@ -65,7 +65,7 @@
   // Navbar Center Logo
   .navbar-center {
     padding: 0px;
-    a.brand_name { padding: 15px 0px !important; font-size: 15px; }
+    a.brand_name {font-size: 15px; }
   }
 
   // Listings Box
@@ -91,13 +91,6 @@
 // Window Size Above Mac book 13inch
 @media (min-width: $mac-book-13inch-width) {
   // Navbar Top
-  nav.application-top-header {
-    .navbar-center {
-      .brand_name {
-        padding: 7px 15px;
-      }
-    }
-  }
 
   // Listings Box
   .listings .caption {
