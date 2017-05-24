@@ -2,7 +2,7 @@
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header{style: "text-align: center;line-height: 50px;"}
-      %a.brand_name.visible-xs{:href => root_path, style: "display: inline !important;"}
+      %a.brand_name.visible-xs{:href => root_path}
         = image_tag "#{S3_ASSET_PATH}/threadhabitsheader_logo.png", class: "img-responsive", style: "height: 30px; display: inline; margin: 0 auto;"
 
       %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
