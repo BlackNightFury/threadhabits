@@ -428,23 +428,24 @@
       $this.css "z-index", "1"
 
       $window.scroll (e) ->
-        scrollPos = ($window.scrollTop() + navBottomHeaderHeight + navTopHeaderHeight)
-        # Stops when scroll position crosses "pos"
-        if scrollPos > pos
-          stopPos = pos
-          $this.css
-            position: 'relative'
-            top: stopPos
-        else if scrollPos >= topOffsetFilter
-          # Starts
-          $this.css
-            position: 'fixed'
-            top: 100
-        else if scrollPos <= topOffsetFilter
-          # Stops back where started
-          $this.css
-            position: 'relative'
-            top: 0
+        if ($window.width() > 765)
+          scrollPos = ($window.scrollTop() + navBottomHeaderHeight + navTopHeaderHeight)
+          # Stops when scroll position crosses "pos"
+          if scrollPos > pos
+            stopPos = pos
+            $this.css
+              position: 'relative'
+              top: stopPos
+          else if scrollPos >= topOffsetFilter
+            # Starts
+            $this.css
+              position: 'fixed'
+              top: 100
+          else if scrollPos <= topOffsetFilter
+            # Stops back where started
+            $this.css
+              position: 'relative'
+              top: 0
         return
       return
 

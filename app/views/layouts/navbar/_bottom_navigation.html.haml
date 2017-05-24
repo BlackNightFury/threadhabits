@@ -1,7 +1,7 @@
 %nav.navbar.navbar-default.application-bottom-header.navbar-fixed-top
   .container-fluid
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav.col-md-7.col-sm-7.col-xs-6.side-left-section
+      %ul.nav.navbar-nav.col-md-12.col-sm-12.col-xs-12.side-left-section
         - @p[:filters].delete("product_type")
         %li
           %a{:href => inventory_path(@p.merge!(filters: { product_type: "tops" }))}

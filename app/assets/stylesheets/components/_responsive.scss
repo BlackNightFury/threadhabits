@@ -201,6 +201,33 @@
   }
 }
 
+// More desktop responsiveness
+@media only screen and (max-width: 422px) {
+  .navbar-right li {
+    width: 100%;
+
+    &.visible-xs {
+      display: none !important;
+    }
+  }
+
+  .main-brand {
+    display: block !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    img {
+      margin: 0 auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .filters {
+    padding-right: 0;
+  }
+}
+
 // iPhone in portrait & landscape
 @media only screen and (min-device-width : $iphone-min-width) and (max-device-width : $iphone-max-width) {
   @import "components/mobile_responsive/main";
