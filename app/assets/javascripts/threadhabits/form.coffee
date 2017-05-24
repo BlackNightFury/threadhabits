@@ -441,6 +441,7 @@
             $this.css
               position: 'fixed'
               top: 100
+              width: 300
           else if scrollPos <= topOffsetFilter
             # Stops back where started
             $this.css
