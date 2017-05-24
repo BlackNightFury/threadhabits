@@ -1,0 +1,34 @@
+@media only screen and (max-width: 767px) {
+  .filters {
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #about_us .side-affix li {
+    display: inline;
+    font-size: 12px;
+  }
+
+  #about_us .side-affix li a span {
+    display: none;
+    background: none;
+    padding: 0;
+  }
+
+  #side-about-scrollspy .nav > li > a {
+    display: block;
+  }
+
+  .affix {
+    position: initial;
+  }
+
+  #about_us .side-affix {
+    border-left: none;
+
+    li {
+      padding: 5px 0;
+    }
+  }
+}
