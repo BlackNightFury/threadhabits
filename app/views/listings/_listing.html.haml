@@ -5,9 +5,9 @@
     .caption
       %p.created= time_ago_in_words((listing.updated_at || listing.created_at))
       .desc
-        %h4
+        %h4{style: "width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-bottom: 0;"}
           = listing.company.try(:name)
-          %small= listing.size.try(:name)
+        %small{style: "color: #777777; margin-bottom: 10px;"}= listing.size.try(:name)
         %p.content
           = listing.name
       %p.price= number_to_currency listing.price
