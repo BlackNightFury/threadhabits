@@ -8,7 +8,7 @@
   = form_tag inventory_path, method: :get do
     = hidden_field_tag "filters[product_type]", @p[:filters][:product_type]
     = hidden_field_tag "filters[q]", @p[:filters][:q]
-    #filter-panel.panel.panel-default
+    #filter-panel.panel.panel-default{style: mobile_device? ? "display: block" : ""}
       .panel-body
         -# Accordians
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
@@ -103,3 +103,4 @@
           -#    %li
           -#      = link_to inventory_path do
           -#        %i.fa.fa-refresh
+    }
