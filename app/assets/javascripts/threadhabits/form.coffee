@@ -433,9 +433,9 @@
           # Stops when scroll position crosses "pos"
           if scrollPos > pos
             stopPos = pos
-            $this.css
-              position: 'relative'
-              top: stopPos
+            # $this.css
+            #   position: 'relative'
+            #   top: stopPos
           else if scrollPos >= topOffsetFilter
             width = 300
             if $window.width() <= 1200
