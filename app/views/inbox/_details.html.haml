@@ -6,11 +6,11 @@
     - if @chat_room.listing.present?
       .row
         .col-md-9.col-sm-9.col-xs-9.listing
-          .col-md-4.col-sm-4.col-xs-4
+          .col-md-4.col-sm-4.col-xs-12
             = link_to detail_listings_path @chat_room.listing.slug do
               = image_tag @chat_room.listing.display_image.url(:medium), class: "img-responsive recipient-img"
-          .col-md-8.col-sm-8.col-xs-8
-            %h2
+          .col-md-8.col-sm-8.col-xs-12
+            %h2{style: "font-size: 20px"}
               = link_to detail_listings_path @chat_room.listing.slug do
                 = @chat_room.listing.name
               %small.pull-right
@@ -30,7 +30,7 @@
             -# %button.btn.btn-default Add to Cart
             -# %button.btn.btn-default Buy it now
             %br
-            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg" do
+            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg", style: 'min-width: 180px' do
               %i.fa.fa-paypal
               Purchase with Paypal
 

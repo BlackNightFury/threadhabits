@@ -4,9 +4,14 @@
 
 .container
   .filter-board.visible-xs
-    = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do
-      %i.fa.fa-filter
-      Filters
+    - if mobile_device?
+      = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do
+        %i.fa.fa-filter
+        Filters
+    - else
+      = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu-desktop" do
+        %i.fa.fa-filter
+        Filters
   / %div{style: @banner == true && !mobile_device? ? "margin-top: -75px;" : ""}
   %div
     .row

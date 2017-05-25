@@ -1,3 +1,3 @@
 $ ->
-  $("#toggle-filter-menu").click ->
+  $("#toggle-filter-menu-desktop").click ->
     $("#filter-panel").toggle()
