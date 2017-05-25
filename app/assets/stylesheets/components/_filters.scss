@@ -1,0 +1,43 @@
+.filter-form-initial, .filter-form-stuck {
+  width: 300px;
+}
+
+.filter-form-initial {
+  position: relative;
+  top: 0;
+}
+
+.filter-form-stuck {
+  position: fixed;
+  top: 100px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .filter-form-stuck, .filter-form-initial {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .filter-form-stuck, .filter-form-initial {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .filter-form-stuck, .filter-form-initial {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .filters {
+    padding: 0;
+  }
+
+  .listing-filters form {
+    margin-left: 0 !important;
+  }
+}

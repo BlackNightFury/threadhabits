@@ -437,23 +437,27 @@
             #   position: 'relative'
             #   top: stopPos
           else if scrollPos >= topOffsetFilter
-            width = 300
-            if $window.width() <= 1200
-              width = 250
+            $this.removeClass("filter-form-initial")
+            $this.addClass("filter-form-stuck")
+            # width = 300
+            # if $window.width() <= 1200
+            #   width = 250
 
-            if $window.width() <= 991
-              width = 200
+            # if $window.width() <= 991
+            #   width = 200
               
-            # Starts
-            $this.css
-              position: 'fixed'
-              top: 100
-              width: width
+            # # Starts
+            # $this.css
+            #   position: 'fixed'
+            #   top: 100
+            #   width: width
           else if scrollPos <= topOffsetFilter
             # Stops back where started
-            $this.css
-              position: 'relative'
-              top: 0
+            $this.removeClass("filter-form-stuck")
+            $this.addClass("filter-form-initial")
+            # $this.css
+            #   position: 'relative'
+            #   top: 0
         return
       return
 
