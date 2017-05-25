@@ -190,4 +190,10 @@
   .brand_name.visible-xs {
       display: inline !important;
   }
+
+  .person-details .thumbnail {
+    border-radius: 10000000px;
+    width: 310px;
+    margin: 0 auto;
+  }
 }
