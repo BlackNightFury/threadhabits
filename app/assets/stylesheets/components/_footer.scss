@@ -3,3 +3,10 @@ footer {
     float: right;
   }
 }
+
+@media only screen and (min-width: 767px) {
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
