@@ -18,6 +18,14 @@
     }
     .desc {
       h4 { font-size: 15px; font-weight: bold; }
+      p {
+        height: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        white-space: nowrap;
+      }
+
       p.content {
         font-size: 14px;
       }

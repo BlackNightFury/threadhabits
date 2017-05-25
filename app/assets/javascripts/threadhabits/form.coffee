@@ -443,10 +443,7 @@
 
             if $window.width() <= 991
               width = 200
-
-            if $window.width() <= 767
-              width = "100%"
-
+              
             # Starts
             $this.css
               position: 'fixed'
