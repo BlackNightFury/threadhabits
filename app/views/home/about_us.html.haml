@@ -15,6 +15,10 @@
                 Market Place
                 %span
             %li
+              %a{href: '#media'}
+                Media
+                %span
+            %li
               %a{href: '#contact'}
                 Contact Us
                 %span
@@ -68,6 +72,31 @@
 
             %p Lastly, we focus on keeping things affordable by allowing buyers and sellers to use our service for free.
 
+          %section#media
+            %h3.about-us-header
+              MEDIA
+
+            %p Aside from our marketplace, we also have a social media presence (mostly on Instagram) that totals to 200k+ followers.
+
+            %p This includes our main account for Threadhabits (@threadhabits) as well as our multiple sub accounts that we run:
+
+            .col-md-12.col-sm-12.col-xs-12.media-imgs
+              = link_to image_tag( 'threadhabits.png', class: 'col-md-12 col-sm-12 col-xs-12'), 'https://www.instagram.com/threadhabits/' , target: "_blank"
+
+            .col-md-12.col-sm-12.col-xs-12.media-imgs
+              = link_to image_tag( 'curatedfit.png', class: 'col-md-12 col-sm-12 col-xs-12'), 'https://www.instagram.com/curatedfit/' , target: "_blank"
+
+            .col-md-12.col-sm-12.col-xs-12.media-imgs
+              = link_to image_tag( 'curatedfootwear.png', class: 'col-md-12 col-sm-12 col-xs-12'), 'https://www.instagram.com/curatedfootwear/' , target: "_blank"
+
+            .col-md-12.col-sm-12.col-xs-12.media-imgs
+              = link_to image_tag( 'curatedgents.png', class: 'col-md-12 col-sm-12 col-xs-12'), 'https://www.instagram.com/curatedgents/' , target: "_blank"
+
+            .col-md-12.col-sm-12.col-xs-12.media-imgs
+              = link_to image_tag( 'curatedgq.png', class: 'col-md-12 col-sm-12 col-xs-12'), 'https://www.instagram.com/curatedgq/' , target: "_blank"
+
+            .col-md-12.col-sm-12.col-xs-12.media-imgs
+              = link_to image_tag( 'curatedgrid.png', class: 'col-md-12 col-sm-12 col-xs-12'), 'https://www.instagram.com/curatedgrid/' , target: "_blank"
           %section#contact
             %h3.about-us-header
               CONTACT
