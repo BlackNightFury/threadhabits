@@ -7,14 +7,14 @@ class InboxController < ApplicationController
     @chat_room = @chat_rooms.first
     if @chat_room.present?
       @messages = @chat_room.messages.order("created_at asc")
-      @messages.last.mark_as_read if @messages.last.receiver_id == current_person.id
+      @messages.last.try(:mark_as_read) if @messages.last.try(:receiver_id) == current_person.id
       @message = @chat_room.messages.build
     end
   end
 
   def show
     @messages = @chat_room.messages.order("created_at asc")
-    @messages.last.mark_as_read if @messages.last.receiver_id == current_person.id
+    @messages.last.try(:mark_as_read) if @messages.last.try(:receiver_id) == current_person.id
     @message = @chat_room.messages.build
   end
 
