@@ -1,5 +1,5 @@
 .filter-form-initial, .filter-form-stuck {
-  width: 300px;
+  width: 315px;
 }
 
 .filter-form-initial {
@@ -14,13 +14,13 @@
 
 @media only screen and (max-width: 1200px) {
   .filter-form-stuck, .filter-form-initial {
-    width: 250px;
+    width: 265px;
   }
 }
 
 @media only screen and (max-width: 991px) {
   .filter-form-stuck, .filter-form-initial {
-    width: 200px;
+    width: 210px;
   }
 }
 
