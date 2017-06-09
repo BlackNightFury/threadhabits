@@ -72,7 +72,10 @@
   ul.socal-icons-list {
     li {
       @include all-social-icons-sprites;
-      a { padding: 7px 20px; }
+      a { 
+          padding: 7px 20px;           
+          filter: brightness(95%) blur(0px) opacity(1);
+      }
     }
   }
   .listing-tabs {
