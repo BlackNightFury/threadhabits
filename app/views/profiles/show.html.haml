@@ -69,11 +69,11 @@
         .col-md-6.col-sm-6.col-xs-6
           - if @person.social_links.any?
             %ul.list-inline.list-right.socal-icons-list
-              %li= link_to "", @person.facebook_profile, class: "social-icons-fb", target: "_blank" if @person.facebook_profile.present?
-              %li= link_to "", @person.instagram_profile, class: "social-icons-instagram", target: "_blank" if @person.instagram_profile.present?
+              %li= link_to image_tag('fb.png',:size => "35x32"), @person.facebook_profile, class: "social-icons-profile", target: "_blank" if @person.facebook_profile.present?
+              %li= link_to image_tag('insta.png',:size => "42x38"), @person.instagram_profile, class: "social-icons-profile", target: "_blank" if @person.instagram_profile.present?
               -# %li
                 = link_to "", "#", class: "social-icons-snapchat"
-              %li= link_to "", @person.instagram_profile, class: "social-icons-twitter", target: "_blank" if @person.instagram_profile.present?
+              %li= link_to image_tag('twitter.png',:size => "32x28"), @person.instagram_profile, class: "social-icons-profile", target: "_blank" if @person.instagram_profile.present?
               -# %li
                 = link_to "", "#", class: "social-icons-pinterest"
       .row
