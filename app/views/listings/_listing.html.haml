@@ -7,7 +7,7 @@
       .desc
         %h4{style: "width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-bottom: 0;"}
           = listing.company.try(:name)
-        %small{style: "color: #777777; margin-bottom: 10px;"}= listing.size.try(:name)
+          %small{style: "color: #777777; margin-bottom: 10px;float: right;"}= (listing.size.name.split('/').first rescue '')
         %p.content
           = listing.name
       %p.price= number_to_currency listing.price
