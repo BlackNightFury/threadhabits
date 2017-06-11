@@ -2,7 +2,7 @@
   .listing-thumbnail.thumbnail
     %a{href: detail_listings_path(listing.slug)}
       = image_tag listing.display_image.url(:medium)
-    .caption{style: "min-height: 20px !important;"}
+    .caption{style: "min-height: 100px !important;"}
       %p.created{style: "margin-bottom: 0px;"}= time_ago_in_words((listing.updated_at || listing.created_at))
       .desc
         %h4{style: "text-align:left;float:left;white-space: nowrap;margin-bottom: 0px;margin-top: 5px;  "}
