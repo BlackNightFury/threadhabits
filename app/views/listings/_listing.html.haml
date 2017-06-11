@@ -2,12 +2,12 @@
   .listing-thumbnail.thumbnail
     %a{href: detail_listings_path(listing.slug)}
       = image_tag listing.display_image.url(:medium)
-    .caption
-      %p.created= time_ago_in_words((listing.updated_at || listing.created_at))
+    .caption{style: "min-height: 20px !important;"}
+      %p.created{style: "margin-bottom: 0px;"}= time_ago_in_words((listing.updated_at || listing.created_at))
       .desc
-        %h4{style: "width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-bottom: 0;"}
+        %h4{style: "text-align:left;float:left;white-space: nowrap;margin-bottom: 0px;margin-top: 5px;  "}
           = listing.company.try(:name)
-          %small{style: "color: #777777; margin-bottom: 10px;float: right;"}= (listing.size.name.split('/').first rescue '')
-        %p.content
+        %h4{style: "text-align:right;float: right;padding-right: 10px;font-weight: normal;font-size: 14px;margin-top: 5px;margin-bottom: 0px;"}= (listing.size.name.split('/').first rescue '')
+        %p.content{style: "margin-bottom: 0px;"}
           = listing.name
-      %p.price= number_to_currency listing.price
+      %p.price{style: "margin-bottom: 0px;"}= number_to_currency listing.price
