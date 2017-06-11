@@ -161,7 +161,9 @@ class Person < ApplicationRecord
   end
 
   def notify_admin
-    NotificationsMailer.sign_up_alert(self).deliver
+    Thread.new{
+      NotificationsMailer.sign_up_alert(self).deliver
+    }
   end
 
   def social_links
