@@ -25,7 +25,17 @@
   .details
     .created-at
       = time_ago_in_words((@listing.updated_at || @listing.created_at))
-
+    - if (current_person and @listing.belongs_to_person?(current_person)) || (current_person and current_person.admin?)
+      .edit-options
+        .row
+          .col-md-6
+            = link_to edit_listings_path(@listing.slug), class: "btn btn-primary btn-block" do
+              %i.fa.fa-pencil
+              Edit
+          .col-md-6
+            = link_to destroy_listings_path(@listing.slug), method: :delete, class: "btn btn-primary btn-block ", data: { confirm: "Are you sure?" } do
+              %i.fa.fa-trash
+              Delete
     %ul.list-unstyled.info-section-1
       %li
         %span.pull-left= @listing.company.try(:name)
