@@ -54,6 +54,7 @@ class Listing < ApplicationRecord
   PER_PAGE = 30
 
   def upload_photos(files = [])
+
     if self.display_image.blank?
       self.display_image = files.first
       save!
