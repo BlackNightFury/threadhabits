@@ -28,18 +28,23 @@ class ListingsController < ApplicationController
 
   def uploads
     listing = Listing.find(fetch_stored_config(:listing_id))
-    listing.upload_photos uploads_params[:upload_photos]
+    Thread.new{
+      listing.upload_photos uploads_params[:upload_photos]
+    }
     render json: 200
   end
 
   def destroy_uploads
     upload = Upload.find(params[:upload_id]).destroy
     listing = upload.listing
-    if listing.uploads.blank?
-      listing.update_attribute(:display_image, nil)
-    else
-      listing.update_attribute(:display_image, listing.uploads.first.image)
-    end
+    Thread.new{
+      if listing.uploads.blank?
+        listing.update_attribute(:display_image, nil)
+      else
+        listing.update_attribute(:display_image, listing.uploads.first.image)
+      end
+    }
+
     render json: 200
   end
 
