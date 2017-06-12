@@ -5,9 +5,9 @@
     .caption{style: "min-height: 120px !important;"}
       %p.created{style: "margin-bottom: 0px;"}= time_ago_in_words((listing.updated_at || listing.created_at))
       .desc
-        %h4{style: "text-align:left;float:left;white-space: nowrap;margin-bottom: 0px;margin-top: 5px;  "}
+        %h4{style: "text-overflow: ellipsis; overflow: hidden; text-align:left;float:left;white-space: nowrap;margin-bottom: 10px;margin-top: 5px;  "}
           = listing.company.try(:name)
-        %h4{style: "text-align:right;float: right;padding-right: 10px;font-weight: normal;font-size: 14px;margin-top: 5px;margin-bottom: 0px;"}= (listing.size.name.split('/').first rescue '')
-        %p.content{style: "margin-bottom: 0px;"}
+        %h4{style: "text-align:right;float: right;padding-right: 10px;font-weight: normal;font-size: 14px;margin-top: 5px;margin-bottom: 10px;"}= (listing.size.name.split('/').first rescue '')
+        %p.content{style: "margin-bottom: 5px;"}
           = listing.name
       %p.price{style: "margin-bottom: 0px;"}= number_to_currency listing.price
