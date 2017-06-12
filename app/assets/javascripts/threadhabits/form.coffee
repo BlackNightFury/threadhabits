@@ -371,17 +371,18 @@
     $("#listing_upload_photos").fileinput(
       uploadUrl: "/listings/uploads.json",
       uploadAsync: false,
-      minFileCount: 1
-      maxFileCount: 5
-      showDrag: true
-      showPreview: true
-      showRemove: false
+      minFileCount: 1,
+      maxFileCount: 8,
+      showDrag: true,
+      showPreview: true,
+      showRemove: true,
       showBrowse: true,
-      browseOnZoneClick: true
-      previewFileType: "png",
-      allowedFileExtensions: ["png", "jpg", "jpeg"]
+      initialPreviewFileType: 'image',
+      initialPreviewAsData: true,
+      browseOnZoneClick: true,
+      previewFileType: ["png", "jpg", "jpeg"],
+      allowedFileExtensions: ["png", "jpg", "jpeg"],
       elErrorContainer: '#file-upload-error-container'
-      showDrag: true
     ).on('filebatchpreupload', (event, data, id, index) ->
       $('#file-upload-success-container').html('<h4>Upload Status</h4><ul></ul>').hide()
       return

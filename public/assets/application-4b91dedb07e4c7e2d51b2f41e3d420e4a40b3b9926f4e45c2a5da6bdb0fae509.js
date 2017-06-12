@@ -20519,7 +20519,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
         uploadUrl: "/listings/uploads.json",
         uploadAsync: false,
         minFileCount: 1,
-        maxFileCount: 5,
+        maxFileCount: 8,
         showDrag: true,
         showPreview: true,
         showRemove: false,
