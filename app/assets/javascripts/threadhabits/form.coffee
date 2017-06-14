@@ -107,11 +107,17 @@
     $('#new_person').validate
       rules:
         "person[first_name]": 'required'
+        "person[access_code]": 'required'
         "person[last_name]": 'required'
         "person[username]":
           required: true
           remote:
             url: remoteUrl + "attribute_name=username"
+            type: remoteMethod
+        "person[access_code]":
+          required: true
+          remote:
+            url: remoteUrl + "attribute_name=access_code"
             type: remoteMethod
         "person[email]":
           required: true
@@ -131,6 +137,8 @@
           remote: "Username already in use!"
         "person[email]":
           remote: "Email already in use!"
+        "person[access_code]":
+            remote: "Invalid access code"
         "person[password_confirmation]":
           equalTo: "Password donot match correctly"
         "person[terms]": "Terms & Conditions must be accespted"
