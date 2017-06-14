@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    = render partial: "layouts/components/head"
+  %body{ class: [view_controller, view_action].join(" ") }
+    = include_gon
+    .main-container
+      - if true
+        .top-banner{style: "margin: 0 !important;padding: 230px 0px 328px 0px !important "}
+          %h1 Thread Habits
+          .buttons
+            %ul.list-inline
+              - if !person_signed_in?
+                %li= link_to "Login", new_person_session_path, class: "btn btn-default btn-lg banner-btn"
+                %li= link_to "Sign Up", new_person_registration_path, class: "btn btn-default btn-lg banner-btn"
+              - else
+                %li= link_to "Sell", new_listing_path, class: "btn btn-default btn-lg banner-btn"
+
+      = render partial: "layouts/components/footer"
