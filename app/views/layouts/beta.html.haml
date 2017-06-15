@@ -4,8 +4,8 @@
     = render partial: "layouts/components/head"
   %body{ class: [view_controller, view_action].join(" ") }
     = include_gon
-    .main-container
-      .top-banner{style: "margin: 0 !important;padding: 320px 0px 340px 0px !important;background-position-y: 0px;background-image: linear-gradient(rgba(0, 0, 0, 100), rgba(0, 0, 0, 0.7)), url('/assets/landing-beta.png') no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;"}
+    .main-container{style: "margin: 0 !important;"}
+      .top-banner{style: "margin: 0 !important;padding: 320px 0px 340px 0px !important;background-position-y: 0px;background-image: linear-gradient(rgba(0, 0, 0, 100), rgba(0, 0, 0, 0.7)), url('/assets/landing-beta.png')"}
         =image_tag "banner-logo.png",width: '200px',height: '40px'
         .buttons{style: 'margin-top: 40px'}
           %ul.list-inline
