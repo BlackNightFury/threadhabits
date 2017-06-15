@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   before_action only: [ :landing ] { landing_banner(true) }
   before_action :filter_data, only: [ :inventory ]
-  before_action :authenticate_person!, only: [ :verify_unread_message ]
+  # before_action :authenticate_person!, only: [ :verify_unread_message ]
+  before_action :authenticate_person!, except: :beta_landing_page
   layout "beta", :only => [ :beta_landing_page]
   def landing
     @landing_banners = [
