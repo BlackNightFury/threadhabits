@@ -6,14 +6,10 @@
     = include_gon
     .main-container
       - if true
-        .top-banner{style: "margin: 0 !important;padding: 230px 0px 328px 0px !important "}
-          %h1 Thread Habits
-          .buttons
+        .top-banner{style: "margin: 0 !important;padding: 320px 0px 340px 0px !important;background-position-y: 0px;background-image: linear-gradient(rgba(0, 0, 0, 100), rgba(0, 0, 0, 0.7)), url('/assets/landing-beta.png') no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;"}
+          =image_tag "banner-logo.png",width: '200px',height: '40px'
+          .buttons{style: 'margin-top: 40px'}
             %ul.list-inline
-              - if !person_signed_in?
-                %li= link_to "Login", new_person_session_path, class: "btn btn-default btn-lg banner-btn"
-                %li= link_to "Sign Up", new_person_registration_path, class: "btn btn-default btn-lg banner-btn"
-              - else
-                %li= link_to "Sell", new_listing_path, class: "btn btn-default btn-lg banner-btn"
-
+              %li= link_to "Login", new_person_session_path, class: "btn btn-default btn-md banner-btn",style: 'font-size:15px;'
+              %li= link_to "Sign Up", new_person_registration_path, class: "btn btn-default btn-md banner-btn",style: 'font-size:15px;'
       = render partial: "layouts/components/footer"
