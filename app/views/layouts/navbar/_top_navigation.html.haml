@@ -4,7 +4,7 @@
     .navbar-header{style: "text-align: center;line-height: 50px;"}
       %a#navbar-search-xs.navbar-search.visible-xs{:href => "#", style: "position: absolute; left: 15px; display: inline;"}
         %i.fa.fa-search
-      %a.brand_name.visible-xs{:href => root_path, style: 'position: relative; right: -15px;'}
+      %a.brand_name.visible-xs{:href => inventory_path, style: 'position: relative; right: -15px;'}
         = image_tag "#{S3_ASSET_PATH}/threadhabitsheader_logo.png", class: "img-responsive", style: "height: 30px; display: inline; margin: 0 auto;"
 
       %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button", style: 'margin-right: 30px;'}
@@ -29,7 +29,7 @@
                 = text_field_tag "filters[q]", @p[:filters][:q], class: "form-control", placeholder: "Search"
         %ul.nav.navbar-nav.navbar-center.col-md-2.col-xs-2.col-sm-2.col-lg-2.hidden-xs.main-brand
           %li
-            %a.brand_name{:href => root_path}
+            %a.brand_name{:href => inventory_path}
               = image_tag "#{S3_ASSET_PATH}/threadhabitsheader_logo.png", class: "img-responsive", style: "height: 30px"
         %ul.nav.navbar-nav.navbar-right.col-md-5.col-xs-12.col-sm-7.col-lg-5
           - if person_signed_in?

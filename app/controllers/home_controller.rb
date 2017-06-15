@@ -30,7 +30,7 @@ class HomeController < ApplicationController
   end
 
   def beta_landing_page
-
+    redirect_to :inventory if current_person
   end
 
   def inventory
