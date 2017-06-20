@@ -12,6 +12,12 @@ class NotificationsMailer < ActionMailer::Base
     mail to: @receiver.email, subject: "New Message From #{@sender.full_name}"
   end
 
+  def follower_alert(follower,following)
+    @follower = follower
+    @following = following
+    mail to: @follower.email, subject: "You just got a new follower!"
+  end
+
   def sign_up_alert(person)
     @person = person
     mail to: Rails.application.secrets.admin_email, subject: "New Sign Up"

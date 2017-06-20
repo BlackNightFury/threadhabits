@@ -153,7 +153,7 @@ class Person < ApplicationRecord
     unless self.preferences.notifications.present?
       hash = {}
       Preference::DEFAULT_PREFERENCES.each do |pref|
-        hash[pref.to_sym] = false
+        hash[pref.to_sym] = true
       end
       pref = preferences.notifications.build(preference_type: "Notification")
       pref.data = hash

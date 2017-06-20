@@ -1,0 +1,27 @@
+%p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
+%p
+  ="Hey #{@follower.full_name},"
+%p
+  %strong= @following.full_name
+  just followed you on threadhabits.com
+%br
+%p.center-link
+  = link_to 'View Site', root_url, target: "_blank", class: "btn btn-primary",style: "padding: 15px 47px;"
+
+%footer
+  %ul.list-inline.company-info
+    %li &copy; 2017 Threadhabits
+    %li All Rights Reserved
+    %li
+      = link_to 'www.threadhabits.com', root_url, target: "_blank"
+  %br
+  %ul.list-inline.social-icons
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/fb.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/instagram.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/snapchat.png", class: "img-responsive"

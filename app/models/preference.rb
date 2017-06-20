@@ -13,7 +13,7 @@
 class Preference < ApplicationRecord
   belongs_to :person
 
-  DEFAULT_PREFERENCES = [:new_message, :new_payment]
+  DEFAULT_PREFERENCES = [:new_message, :new_payment,:new_follower]
 
   scope :notifications, -> { where("preference_type = 'Notification'") }
 

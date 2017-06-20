@@ -28,6 +28,9 @@
       .form-group
         = f.check_box :new_payment, { checked: @preferences.include?(:new_payment) }, true, false
         = f.label :new_payment, "...I receive a new payment"
+      .form-group
+        = f.check_box :new_follower, { checked: @preferences.include?(:new_follower) }, true, false
+        = f.label :new_follower, "...other user followed me"
       -# .form-group
         = f.check_box :following_new_post, {checked: @preferences.include?(:following_new_post)}, true, false
         = f.label :following_new_post, "...someone I follow posts new listing"
