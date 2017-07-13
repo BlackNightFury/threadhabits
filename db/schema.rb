@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614091412) do
+ActiveRecord::Schema.define(version: 20170713173421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,18 @@ ActiveRecord::Schema.define(version: 20170614091412) do
     t.string   "selection"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "transaction_details", force: :cascade do |t|
+    t.string   "amount_of_transaction"
+    t.string   "transaction_id"
+    t.string   "transaction_status"
+    t.string   "buyer"
+    t.string   "seller"
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "uploads", force: :cascade do |t|
