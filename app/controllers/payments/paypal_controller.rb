@@ -3,8 +3,7 @@ class Payments::PaypalController < ApplicationController
   before_action :authenticate_person!, except: [:webhook, :confirm]
 
   def checkout
-    @listing = Listing.find(params[:listing_id])
-
+    @listing = Listing.find(params[:listing_id])    
     if !@listing.person.is_seller?
       flash[:alert] = "Can't do payment with paypal at the moment. Contact tech support"
       redirect_to detail_listings_path(@listing.slug) and return
@@ -32,13 +31,15 @@ class Payments::PaypalController < ApplicationController
     redirect_to "/"
   end
 
-  def webhook
+  def webhook        
     params.permit! # Permit all Paypal input params
-    status = params[:payment_status]
+    status = params[:payment_status]    
     if status == "Completed"
       if params[:custom].present?
-        person = Person.find(params[:custom])
-        NotificationsMailer.payment_processed(person).deliver!
+        buyer = Person.find(params[:custom])
+        seller = Person.find_by_paypal_id(params[:receiver_email])  
+        TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
+        NotificationsMailer.payment_processed(buyer).deliver!
       end
     end
     render nothing: true
