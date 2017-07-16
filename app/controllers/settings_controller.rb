@@ -50,6 +50,16 @@ class SettingsController < ApplicationController
     redirect_to profiles_settings_path, notice: "Image Removed Successfully"
   end
 
+  def update_card
+    card_detail = params["card_token"]["card"].as_json
+    stripe_token = params["card_token"]["id"]
+    if current_person.update_attributes({card: card_detail, stripe_token: stripe_token})
+      render json: { success: true, notice: "Card details updated successfully" }
+    else
+      render json: { success: false, notice: "Something went wrong please try again." }
+    end
+  end
+
   private
     def person_params
       permitted_attributes =  case @@current_settings.to_sym

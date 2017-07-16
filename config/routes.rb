@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       SettingsHelper.settings_list.each do |list|
         get list[0]
       end
+      post :update_card
     end
   end
 

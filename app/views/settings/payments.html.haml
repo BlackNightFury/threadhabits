@@ -6,3 +6,85 @@
       = f.text_field :paypal_id, class: "form-control input-lg"
     .form-group
       = f.submit "Save Information", class: "btn btn-primary site-btn"
+  %hr
+  %form#payment-form{:action => "/charge", :method => "post"}
+    .form-group
+      %label{:for => "card-element"}
+        Your Credit or debit card
+      #card-element
+      #card-errors{:role => "alert"}
+    .form-group
+      %button#load.btn.btn-primary.site-btn{"data-loading-text" => "<i class='fa fa-spinner fa-spin '></i> Processing", :type => "submit"} Save Information
+
+
+:javascript
+  $(document).ready( function() {
+    // Create a Stripe client
+    var stripe = Stripe('pk_test_aj7NYTpaVVIWJQUMQhZYYcj1');
+
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create('card', {style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+      $('#load').button('loading');
+      event.preventDefault();
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+          $('#load').button('reset');
+        } else {
+          var saveData = $.ajax({
+            type: 'POST',
+            url: "/settings/update_card",
+            data: { card_token: result.token },
+            success: function(resultData) {
+              $('#load').button('reset');
+              location.reload();
+            }
+          });
+          saveData.error(function() {
+            alert("Something went wrong, Please try again");
+          });
+        }
+      });
+    });
+  });
