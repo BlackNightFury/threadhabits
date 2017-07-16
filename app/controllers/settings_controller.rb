@@ -53,7 +53,8 @@ class SettingsController < ApplicationController
   def update_card
     card_detail = params["card_token"]["card"].as_json
     stripe_token = params["card_token"]["id"]
-    if current_person.update_attributes({card: card_detail, stripe_token: stripe_token})
+    customer = Stripe::Customer.create source: stripe_token
+    if current_person.update_attributes({card: card_detail, stripe_token: stripe_token, stripe_customer: customer.id})
       render json: { success: true, notice: "Card details updated successfully" }
     else
       render json: { success: false, notice: "Something went wrong please try again." }

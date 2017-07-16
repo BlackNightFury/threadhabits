@@ -1,6 +1,7 @@
 ActiveAdmin.register Person, :as => "Users" do
   menu priority: 1
   permit_params :email, :username, :address, :first_name, :last_name
+  actions :all, :except => [:edit, :new]
 
   index do
     column :email

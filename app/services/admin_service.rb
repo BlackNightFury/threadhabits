@@ -7,6 +7,7 @@ class AdminService
       admin.password = Rails.application.secrets.admin_password
       admin.password_confirmation = Rails.application.secrets.admin_password
       admin.skip_confirmation!
+      admin.access_code = Rails.application.secrets.sign_up_access_code
       admin.admin = true
     end
   end

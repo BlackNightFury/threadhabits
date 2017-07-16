@@ -177,6 +177,6 @@ class Person < ApplicationRecord
 
   # Checkout paypal business email
   def is_seller?
-    self.paypal_id.present?
+    self.paypal_id.present? && self.stripe_token.present?
   end
 end
