@@ -9,12 +9,20 @@
   %hr
   %form#payment-form{:action => "/charge", :method => "post"}
     .form-group
+    - if current_person.card.present?
+      .card-info
+        %label
+          = "This account is billed to : #{current_person.card["brand"]} ending in #{current_person.card["last4"]}"
+        .form-group
+          %button#load.btn.btn-primary.site-btn.update-btn{:type => "button"} Update Information
+
+    %div{class: "#{current_person.card.present? ? 'hide card-form' : 'card-form' }"}
       %label{:for => "card-element"}
         Your Credit or debit card
       #card-element
       #card-errors{:role => "alert"}
-    .form-group
-      %button#load.btn.btn-primary.site-btn{"data-loading-text" => "<i class='fa fa-spinner fa-spin '></i> Processing", :type => "submit"} Save Information
+      .form-group
+        %button#load.btn.btn-primary.site-btn{"data-loading-text" => "<i class='fa fa-spinner fa-spin '></i> Processing", :type => "submit"} Save Information
 
 
 :javascript
@@ -87,4 +95,9 @@
         }
       });
     });
+
+    $('.update-btn').on('click', function(event){
+      $('.card-form').removeClass('hide')
+      $(this).hide();
+    })
   });
