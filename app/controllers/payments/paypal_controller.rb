@@ -20,7 +20,7 @@ class Payments::PaypalController < ApplicationController
             item_number: @listing.id,
             quantity: '1',
             notify_url: "#{Rails.application.secrets.app_host}/payments/webhook",
-            custom: current_person.id
+            custom: { buyer_id: current_person.id, seller_id: @listing.person.id}.to_json
         }
 
     redirect_to "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
@@ -35,8 +35,9 @@ class Payments::PaypalController < ApplicationController
     status = params[:payment_status]
     if status == "Completed"
       if params[:custom].present?
-        buyer = Person.find(params[:custom])
-        seller = Person.find_by_paypal_id(params[:receiver_email])
+        custom = JSON.parse(params[:custom])
+        buyer = Person.find(custom["buyer_id"])
+        seller = Person.find(custom["seller_id"])
         transaction = TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
         commision = transaction.amount_of_transaction.to_f * 3/100
         customer = Stripe::Customer.retrieve(seller.stripe_customer)
