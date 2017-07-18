@@ -12,7 +12,7 @@
     - if current_person.card.present?
       .card-info
         %label
-          = "This account is billed to : #{current_person.card["brand"]} ending in #{current_person.card["last4"]}"
+          = "The seller fee will be billed to : #{current_person.card["brand"]} ending in #{current_person.card["last4"]}"
         .form-group
           %button#load.btn.btn-primary.site-btn.update-btn{:type => "button"} Update Information
 
