@@ -38,11 +38,15 @@ class Payments::PaypalController < ApplicationController
         custom = JSON.parse(params[:custom])
         buyer = Person.find(custom["buyer_id"])
         seller = Person.find(custom["seller_id"])
-        transaction = TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
-        commision = transaction.amount_of_transaction.to_f * 3/100
-        customer = Stripe::Customer.retrieve(seller.stripe_customer)
-        charge = Stripe::Charge.create customer: customer.id, amount: (commision * 100).to_i, description: '', currency: 'usd'
-        NotificationsMailer.payment_processed(buyer).deliver!
+        unless TransactionDetail.find_by_transaction_id(params[:txn_id]).present?
+          transaction = TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
+          commision = transaction.amount_of_transaction.to_f * 3/100
+          customer = Stripe::Customer.retrieve(seller.stripe_customer)
+          charge = Stripe::Charge.create customer: customer.id, amount: (commision * 100).to_i, description: '', currency: 'usd'
+          NotificationsMailer.payment_processed(buyer).deliver!
+        else
+          render nothing: true and return
+        end
       end
     end
     render nothing: true
