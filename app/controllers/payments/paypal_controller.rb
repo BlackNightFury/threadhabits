@@ -40,7 +40,7 @@ class Payments::PaypalController < ApplicationController
         seller = Person.find(custom["seller_id"])
         unless TransactionDetail.find_by_transaction_id(params[:txn_id]).present?
           transaction = TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
-          commision = transaction.amount_of_transaction.to_f * 3/100
+          commision = (transaction.amount_of_transaction.to_f * 3.50)/100
           customer = Stripe::Customer.retrieve(seller.stripe_customer)
           charge = Stripe::Charge.create customer: customer.id, amount: (commision * 100).to_i, description: '', currency: 'usd'
           NotificationsMailer.payment_processed(buyer).deliver!
