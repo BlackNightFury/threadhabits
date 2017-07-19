@@ -69,7 +69,6 @@ class Person < ApplicationRecord
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
   validates_presence_of :paypal_id, if: Proc.new{|person| person.setting_tab == "payments"}
-  validates :access_code, :presence => true,:inclusion => { :in => ["#{Rails.application.secrets.sign_up_access_code}"] }
   validates :username,
   :presence => true,
   :uniqueness => {
