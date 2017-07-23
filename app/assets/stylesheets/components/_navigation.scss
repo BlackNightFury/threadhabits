@@ -19,6 +19,8 @@ nav.application-top-header {
   // Navbar right side
   .navbar-right {
     margin-right: 0;
+    font-size: 10px;
+    letter-spacing: 1px;
     li {
       text-transform: uppercase;
       text-align: center;
@@ -36,8 +38,9 @@ nav.application-top-header {
     }
 
     li a.sell-btn span {
-      border: 1px solid $sell-color;
+      color: #7b001d;
       padding: 8px 10px;
+      font-weight: bold;
     }
 
     li.open {
@@ -127,7 +130,8 @@ nav.application-bottom-header {
     color: $default-color !important;
   }
   min-height: 0px;
-  font-size: 11px;
+  font-size: 9px;
+  letter-spacing: 1px;
   border-width: 0px;
   margin-top: 50px;
   z-index: 3;
