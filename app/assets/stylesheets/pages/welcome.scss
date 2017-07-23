@@ -37,21 +37,23 @@
   h1, h2 {
     @include single-text-shadow(0px, 0px, 7px, $default-color);
     color: $primary-color;
-    font-weight: 100;
   }
   h1 {
-    font-size: 5.3em;
-    line-height: 60px;
+    font-size: 1.5em;
+    line-height: 85px;
+    color: #fff;
+    letter-spacing: 2px;
   }
   h2 {
-    font-size: 3em;
+    font-size: 1em;
+    letter-spacing: 2px;
   }
   text-align: center;
   margin: 50px 128px 0px 115px;
-  padding: 230px 0px 130px 0px;
+  padding: 90px 0px 130px 0px;
   background-size: cover;
-  background-position-y: -154px;
-  background-position-x: -30px;
+  background-position-y: -130px;
+  background-position-x: -25px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url($s3-asset-path + "LandingBanners/banner-2-new.png");
   .buttons {
     margin-top: 40px;
@@ -86,7 +88,7 @@
 
 main {
   min-height: 800px;
-  margin-top: 1px;
+  margin-top: 25px;
   margin-bottom: 35px;
 }
 
@@ -131,5 +133,4 @@ ul.list-right {
 
 h1 {
   font-family: 'Lato', sans-serif !important;
-  font-weight: 100 !important;
 }

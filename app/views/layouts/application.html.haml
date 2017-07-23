@@ -5,28 +5,39 @@
   %body{ class: [view_controller, view_action].join(" ") }
     = include_gon
 
-    - if mobile_device?
-      = render partial: "layouts/navbar/device_navigation"
-      = yield(:collapsed_menus) if content_for(:collapsed_menus)
-    - else
-      = render partial: "layouts/navbar/top_navigation"
-      = render partial: "layouts/navbar/bottom_navigation"
-
     .main-container
+      - if mobile_device?
+        = render partial: "layouts/navbar/device_navigation"
+        = yield(:collapsed_menus) if content_for(:collapsed_menus)
+      - else
+        = render partial: "layouts/navbar/top_navigation"
+        = render partial: "layouts/navbar/bottom_navigation"
+
       - if @banner == true
-        .top-banner
-          / %h1 The new way to buy and sell clothing.
-          / %h2 buy and sell menswear for free. no fees taken.
-          .buttons
-            / %ul.list-inline
-            /   %li= link_to "Explore", inventory_path(banner: false), class: "btn btn-default btn-lg banner-btn"
-            /   - if !person_signed_in?
-            /     %li= link_to "Login", new_person_session_path, class: "btn btn-default btn-lg banner-btn"
-            /   - else
-            /     %li= link_to "Sell", new_listing_path, class: "btn btn-default btn-lg banner-btn"
+        %div.row
+          .col-md-12.col-sm-12.col-xs-12
+            .top-banner
+              .row
+                .col-md-4.col-sm-4
+                  %h1
+                    BROWSE AND BUY
+                  %h2
+                    Browse our selection of internationally-sourced clothing sold by our global community
+                .col-md-4.col-sm-4
+                  %h1
+                    SELL YOUR ITEMS
+                  %h2
+                    Selling on our marketplace is easy, cost-efficient, and saves time. It’s free to list items, and we only take a small fee of 3.5% if your item sells.
+                .col-md-4.col-sm-4
+                  %h1
+                    FIND YOUR PIECE
+                  %h2
+                    Our inventory is uploaded by thousands of sellers worldwide. If you’re looking for a piece at a lower price, or that’s sold out everwhere else, you may be able to find it here.
       = yield(:heading_section) #Top Heading Section
       = render 'layouts/components/messages' unless @landing_banner
-      %main
-        = yield
+      %div.row
+        .col-md-12.col-sm-12.col-xs-12
+          %main
+            = yield
 
       = render partial: "layouts/components/footer"
