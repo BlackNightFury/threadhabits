@@ -95,7 +95,7 @@ gem 'roadie-rails', '~> 1.0'
 gem "dalli"
 gem 'memcachier'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 # print awesome in rails console
 gem 'awesome_print'
