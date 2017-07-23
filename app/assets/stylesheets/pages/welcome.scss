@@ -42,19 +42,20 @@
     font-size: 1.2em;
     line-height: 85px;
     color: #fff;
-    letter-spacing: 2px;
-    font-weight: 300;
+    letter-spacing: 3px;
+    font-weight: 200;
   }
   h2 {
     font-size: .9em;
     letter-spacing: 3px;
     font-weight: 200;
+    line-height: 1.4;
   }
   text-align: center;
   margin: 0px 116px 0px 106px;;
   padding: 90px 0px 95px 0px;
   background-size: cover;
-  background-position-y: -130px;
+  background-position-y: -125px;
   background-position-x: -25px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url($s3-asset-path + "LandingBanners/banner-2-new.png");
   .buttons {
