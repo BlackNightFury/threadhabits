@@ -3,51 +3,51 @@
   Mobile.filtersTweaks();
 
 .container
-  .filter-board.visible-xs
-    - if mobile_device?
+  - if mobile_device?
+    .filter-board.visible-xs
       = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do
         %i.fa.fa-filter
         Filters
-    - else
+  - else
+    .filter-board.visible-xs
       = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu-desktop" do
         %i.fa.fa-filter
         Filters
   / %div{style: @banner == true && !mobile_device? ? "margin-top: -75px;" : ""}
-  %div
-    .row
-      - unless mobile_device?
-        - if params[:filters].blank?
-          .col-md-3.col-sm-3.col-xs-12.filters
-            = render partial: "filters"
-        -else
-          .col-md-3.col-sm-3.col-xs-12.filters.padding-top-75
-            = render partial: "filters"
+  %div.row
+    - unless mobile_device?
       - if params[:filters].blank?
-        .col-md-9.col-sm-9.col-xs-12
-          - if @listings.present?
-            .listings#public-listings
-              .row
-                .listing-item
-                  = render partial: "listings/listing", collection: @listings
+        .col-md-3.col-sm-3.col-xs-12.filters
+          = render partial: "filters"
+      -else
+        .col-md-3.col-sm-3.col-xs-12.filters.padding-top-75
+          = render partial: "filters"
+    - if params[:filters].blank?
+      .col-md-9.col-sm-9.col-xs-12
+        - if @listings.present?
+          .listings#public-listings
+            .row
+              .listing-item
+                = render partial: "listings/listing", collection: @listings
 
-            #infinite-scrolling.items-pagination
-              = will_paginate @listings, renderer: BootstrapPagination::Rails
-          - else
-            .alert.alert-success
-              There are no listings
-      - else
-        .col-md-9.col-sm-9.col-xs-12.padding-top-75
-          - if @listings.present?
-            .listings#public-listings
-              .row
-                .listing-item
-                  = render partial: "listings/listing", collection: @listings
+          #infinite-scrolling.items-pagination
+            = will_paginate @listings, renderer: BootstrapPagination::Rails
+        - else
+          .alert.alert-success
+            There are no listings
+    - else
+      .col-md-9.col-sm-9.col-xs-12.padding-top-75
+        - if @listings.present?
+          .listings#public-listings
+            .row
+              .listing-item
+                = render partial: "listings/listing", collection: @listings
 
-            #infinite-scrolling.items-pagination
-              = will_paginate @listings, renderer: BootstrapPagination::Rails
-          - else
-            .alert.alert-success
-              There are no listings
+          #infinite-scrolling.items-pagination
+            = will_paginate @listings, renderer: BootstrapPagination::Rails
+        - else
+          .alert.alert-success
+            There are no listings
 
 - content_for :collapsed_menus do
   -# Filters Menu
