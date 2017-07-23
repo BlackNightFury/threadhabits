@@ -24,6 +24,7 @@ class Native
     $(elem).click (e) ->
       disabledEventPropagation(e)
       $(colapsedElem).addClass "toggle-side-menu"
+      $('.main-container .banner-row').hide()
       setTimeout(->
         $(".main-container").addClass "main-toggle-animation"
       , 200)
@@ -31,6 +32,7 @@ class Native
 
     $(".dismiss-times").click ->
       $(colapsedElem).removeClass "toggle-side-menu"
+      $('.main-container .banner-row').show()
       setTimeout(->
         $(".main-container").removeClass "main-toggle-animation"
       , 200)

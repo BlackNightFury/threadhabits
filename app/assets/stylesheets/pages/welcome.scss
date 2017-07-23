@@ -34,6 +34,9 @@
 }
 
 .top-banner {
+  .col-md-4{
+    margin-top: 55px;
+  }
   h1, h2 {
     @include single-text-shadow(0px, 0px, 7px, $default-color);
     color: $primary-color;
@@ -136,4 +139,13 @@ ul.list-right {
 
 h1 {
   font-family: 'Lato', sans-serif !important;
+}
+
+@media only screen and (max-device-width: 667px) and (min-device-width: 375px){
+  .top-banner {
+    background-position: center;
+    background-position-y: 0px !important;
+    margin: 0px -15px 10px -15px !important;
+    padding: 135px 2px 100px 2px !important;
+  }
 }

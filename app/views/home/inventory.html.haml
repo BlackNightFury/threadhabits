@@ -3,16 +3,17 @@
   Mobile.filtersTweaks();
 
 .container
-  - if mobile_device?
-    .filter-board.visible-xs
-      = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do
-        %i.fa.fa-filter
-        Filters
-  - else
-    .filter-board.visible-xs
-      = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu-desktop" do
-        %i.fa.fa-filter
-        Filters
+  .filter-board.visible-xs
+    - if mobile_device?
+      .filter-board.visible-xs
+        = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do
+          %i.fa.fa-filter
+          Filters
+    - else
+      .filter-board.visible-xs
+        = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu-desktop" do
+          %i.fa.fa-filter
+          Filters
   / %div{style: @banner == true && !mobile_device? ? "margin-top: -75px;" : ""}
   %div.row
     - unless mobile_device?

@@ -14,7 +14,7 @@
         = render partial: "layouts/navbar/bottom_navigation"
 
       - if @banner == true
-        %div.row
+        %div.row.banner-row
           .col-md-12.col-sm-12.col-xs-12
             .top-banner
               .row
@@ -35,7 +35,7 @@
                     Our inventory is uploaded by thousands of sellers worldwide. If you’re looking for a piece at a lower price, or that’s sold out everwhere else, you may be able to find it here.
       = yield(:heading_section) #Top Heading Section
       = render 'layouts/components/messages' unless @landing_banner
-      %div.row
+      %div.row.banner-row
         .col-md-12.col-sm-12.col-xs-12
           %main
             = yield
