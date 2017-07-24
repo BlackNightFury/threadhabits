@@ -12,6 +12,10 @@ class ListingsController < ApplicationController
   end
 
   def new
+    unless current_person.is_seller?
+      flash[:alert] = "To sell on Threadhabits, you must add your payment information (PayPal and Card info)"
+      redirect_to profiles_settings_path and return
+    end
     @listing = current_person.listings.build
     set_address!(current_person.address)
 

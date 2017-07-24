@@ -69,7 +69,6 @@ class Person < ApplicationRecord
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
   validates_presence_of :paypal_id, if: Proc.new{|person| person.setting_tab == "payments"}
-  validates :access_code, :presence => true,:inclusion => { :in => ["#{Rails.application.secrets.sign_up_access_code}"] }
   validates :username,
   :presence => true,
   :uniqueness => {
@@ -177,6 +176,6 @@ class Person < ApplicationRecord
 
   # Checkout paypal business email
   def is_seller?
-    self.paypal_id.present?
+    self.paypal_id.present? && self.stripe_token.present?
   end
 end

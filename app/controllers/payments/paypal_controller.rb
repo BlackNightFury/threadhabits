@@ -3,14 +3,13 @@ class Payments::PaypalController < ApplicationController
   before_action :authenticate_person!, except: [:webhook, :confirm]
 
   def checkout
-    @listing = Listing.find(params[:listing_id])    
+    @listing = Listing.find(params[:listing_id])
     if !@listing.person.is_seller?
       flash[:alert] = "Can't do payment with paypal at the moment. Contact tech support"
       redirect_to detail_listings_path(@listing.slug) and return
     end
 
     cost = (@listing.price)
-
     values = {
             business: @listing.person.paypal_id,
             cmd: "_xclick",
@@ -21,7 +20,7 @@ class Payments::PaypalController < ApplicationController
             item_number: @listing.id,
             quantity: '1',
             notify_url: "#{Rails.application.secrets.app_host}/payments/webhook",
-            custom: current_person.id
+            custom: { buyer_id: current_person.id, seller_id: @listing.person.id}.to_json
         }
 
     redirect_to "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
@@ -31,15 +30,23 @@ class Payments::PaypalController < ApplicationController
     redirect_to "/"
   end
 
-  def webhook        
+  def webhook
     params.permit! # Permit all Paypal input params
-    status = params[:payment_status]    
+    status = params[:payment_status]
     if status == "Completed"
       if params[:custom].present?
-        buyer = Person.find(params[:custom])
-        seller = Person.find_by_paypal_id(params[:receiver_email])  
-        TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
-        NotificationsMailer.payment_processed(buyer).deliver!
+        custom = JSON.parse(params[:custom])
+        buyer = Person.find(custom["buyer_id"])
+        seller = Person.find(custom["seller_id"])
+        unless TransactionDetail.find_by_transaction_id(params[:txn_id]).present?
+          transaction = TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
+          commision = (transaction.amount_of_transaction.to_f * 3.50)/100
+          customer = Stripe::Customer.retrieve(seller.stripe_customer)
+          charge = Stripe::Charge.create customer: customer.id, amount: (commision * 100).to_i, description: '', currency: 'usd'
+          NotificationsMailer.payment_processed(buyer).deliver!
+        else
+          render nothing: true and return
+        end
       end
     end
     render nothing: true

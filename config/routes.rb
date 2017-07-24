@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       SettingsHelper.settings_list.each do |list|
         get list[0]
       end
+      post :update_card
     end
   end
 
@@ -54,6 +55,6 @@ Rails.application.routes.draw do
   get 'about_us' => "home#about_us", as: :about_us
   get 'contact_us' => "home#contact_us"
 
-  root to: "home#beta_landing_page"
+  root to: "home#inventory"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
