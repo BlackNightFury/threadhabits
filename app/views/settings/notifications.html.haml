@@ -15,7 +15,7 @@
         = f.check_box :emails_from_administrator, {checked: @preferences.include?(:emails_from_administrator)}, true, false
         = f.label :emails_from_administrator, "I'm willing receive occasional emails from administrator"
 
-      %h3 I want to get an email notification when ...
+      %h3 I will receive an email notification when ...
       .form-group
         = f.check_box :new_message, { checked: @preferences.include?(:new_message) }, true, false
         = f.label :new_message, "...someone sends me a message"

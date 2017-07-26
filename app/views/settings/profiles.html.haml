@@ -7,7 +7,7 @@
   Profiles.validateForm();
 
 = render layout: "side_bar" do
-  %p This information is visible to all Threadhabits users in your profile page.
+  %p Some of this information will be visible on your user profile.
   = form_for current_person, url: settings_path, method: :put, html: { multipart: true, id: "editProfilesForm" } do |f|
     .form-group
       = f.label :first_name

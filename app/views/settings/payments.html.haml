@@ -2,7 +2,7 @@
 = render layout: "side_bar" do
   = form_for current_person, url: settings_path, method: :put, html: { multipart: true } do |f|
     .form-group
-      = f.label :paypal_id, "Your Paypal email address"
+      = f.label :paypal_id, "Paypal email address, This is where funds will be sent to when someone purchases one of your items."
       = f.text_field :paypal_id, class: "form-control input-lg"
     .form-group
       = f.submit "Save Information", class: "btn btn-primary site-btn"
@@ -18,7 +18,7 @@
 
     %div{class: "#{current_person.card.present? ? 'hide card-form' : 'card-form' }"}
       %label{:for => "card-element"}
-        Your Credit or debit card
+        Credit / Debit card. This card will be charged the 3.5% seller fee only when one of your items have sold.
       #card-element
       #card-errors{:role => "alert"}
       .form-group
