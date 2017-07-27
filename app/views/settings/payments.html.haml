@@ -23,6 +23,37 @@
       #card-errors{:role => "alert"}
       .form-group
         %button#load.btn.btn-primary.site-btn{"data-loading-text" => "<i class='fa fa-spinner fa-spin '></i> Processing", :type => "submit"} Save Information
+  .form-group
+    %h2{:style => "text-align:center"} Subscription
+    - subscription_type = current_person.subscription_type
+    - subscription_created_at = current_person.subscription_created_at
+    .columns
+      %ul.price
+        %li.header Default
+        %li.grey
+        %li.grey{style: (subscription_type == 1 || !current_person.active_subscription?) ? "background-color:#4CAF50" : ''} 3.5% for each order 
+        - unless current_person.active_subscription?
+          %li.grey
+            =# link_to "Select", new_charge_path(subscription_type: 1)
+    .columns
+      %ul.price
+        %li.header Pro
+        %li.grey{style: subscription_type == 2 && current_person.active_subscription? ? "background-color:#4CAF50" : ''}
+          $2 p/m          
+          - unless current_person.active_subscription?
+            = link_to "Pay ($2)", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), class: 'btn btn-primary'
+
+        %li.grey{style: subscription_type == 3 && current_person.active_subscription? ? "background-color:#4CAF50" : ''}
+          $9.99 Annual
+          - unless current_person.active_subscription?
+            = link_to "Pay ($9.99)", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), class: 'btn btn-primary'
+        %li.grey
+          - if subscription_type == 3 && current_person.active_subscription?
+            %br
+            = "#{((subscription_created_at + 1.year) - DateTime.now).to_i/ 1.day} days remaining "
+          - if subscription_type == 2 && current_person.active_subscription?
+            %br
+            = "#{((subscription_created_at + 1.month) - DateTime.now).to_i/ 1.day} days remaining "
 
 
 :javascript

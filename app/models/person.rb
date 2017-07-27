@@ -64,6 +64,7 @@ class Person < ApplicationRecord
 
   attr_accessor :terms, :login, :setting_tab
 
+  SUBSCRIPTION_TYPES = {default: 0, one_month: 1, one_year: 2}
   after_create :generate_default_preferences, :notify_admin
 
   validates_acceptance_of :terms
@@ -178,4 +179,14 @@ class Person < ApplicationRecord
   def is_seller?
     self.paypal_id.present? && self.stripe_token.present?
   end
+
+  def active_subscription?
+    (self.subscription_type == 2 && self.subscription_created_at + 1.month >= DateTime.now) ||
+    (self.subscription_type == 3 && self.subscription_created_at + 1.year >= DateTime.now)     
+  end
+
+  def setup_stripe_account(stripe_email, stripe_token)
+    customer = Stripe::Customer.create(email: stripe_email, source: stripe_token)
+  end
+
 end

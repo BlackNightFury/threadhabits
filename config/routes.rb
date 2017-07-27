@@ -56,5 +56,8 @@ Rails.application.routes.draw do
   get 'contact_us' => "home#contact_us"
 
   root to: "home#inventory"
+
+  resources :charges, only: [:new, :create]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

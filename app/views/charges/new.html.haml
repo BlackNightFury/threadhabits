@@ -1,0 +1,21 @@
+.settings.container
+  .row
+    .form-group
+      %hr
+      %hr
+      .panel
+        .row
+          %center
+            %h3
+              Thank you for choosing
+              %strong
+                = params[:plan]
+            = form_tag(charges_path(current_person)) do
+              %label.amount
+                %span
+                  Amount: 
+                  = to_dollar(params[:amount].to_i)
+                  = hidden_field_tag :subscription_type , params[:subscription_type]
+              %br
+                = javascript_include_tag 'https://checkout.stripe.com/checkout.js',
+              class: 'stripe-button', data: stripe_params
