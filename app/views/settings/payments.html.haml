@@ -24,37 +24,53 @@
       .form-group
         %button#load.btn.btn-primary.site-btn{"data-loading-text" => "<i class='fa fa-spinner fa-spin '></i> Processing", :type => "submit"} Save Information
   .form-group
-    %h2{:style => "text-align:center"} Subscription
     - subscription_type = current_person.subscription_type
     - subscription_created_at = current_person.subscription_created_at
     .columns
-      %ul.price
-        %li.header Default
-        %li.grey
-        %li.grey{style: (subscription_type == 1 || !current_person.active_subscription?) ? "background-color:#4CAF50" : ''} 3.5% for each order 
+      .price
+        
+        %li
+          Commission based
+        %li.default
+          %strong
+            3.5%
+          %br
+          of each sell 
         - unless current_person.active_subscription?
           %li.grey
-            =# link_to "Select", new_charge_path(subscription_type: 1)
+        = link_to "Select", new_charge_path(subscription_type: 1), class: 'btn btn-primary pay-bill-default'
     .columns
-      %ul.price
-        %li.header Pro
-        %li.grey{style: subscription_type == 2 && current_person.active_subscription? ? "background-color:#4CAF50" : ''}
-          $2 p/m          
-          - unless current_person.active_subscription?
-            = link_to "Pay ($2)", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), class: 'btn btn-primary'
-
-        %li.grey{style: subscription_type == 3 && current_person.active_subscription? ? "background-color:#4CAF50" : ''}
-          $9.99 Annual
-          - unless current_person.active_subscription?
-            = link_to "Pay ($9.99)", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), class: 'btn btn-primary'
-        %li.grey
+      .price
+        
+        #exTab1.container
+          %ul.nav.nav-pills
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#1a"} Paid Monthly
+            %li
+              %a{"data-toggle" => "tab", :href => "#2a"} Paid Annually
+          .tab-content
+            #1a.tab-pane.monthly.active.text-center
+              %strong
+                $2
+                %sub /mo
+              %br
+                Paid monthly          
+              -# unless current_person.active_subscription?
+              = link_to "Pay ($2)", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), class: 'btn btn-primary pay-bill-monthly'
+            #2a.tab-pane.annual.text-center
+            
+              %strong 
+                $9.99 
+                %sub Annual
+              %br
+                Paid Annually
+              -# unless current_person.active_subscription?
+              = link_to "Pay ($9.99)", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), class: 'btn btn-primary pay-bill-annual'
+        %h4.text-center
           - if subscription_type == 3 && current_person.active_subscription?
-            %br
-            = "#{((subscription_created_at + 1.year) - DateTime.now).to_i/ 1.day} days remaining "
+            = "#{((subscription_created_at + 1.year) - DateTime.now).to_i/ 1.day} Days remaining "
           - if subscription_type == 2 && current_person.active_subscription?
-            %br
-            = "#{((subscription_created_at + 1.month) - DateTime.now).to_i/ 1.day} days remaining "
-
+            = "#{((subscription_created_at + 1.month) - DateTime.now).to_i/ 1.day} Days remaining "
 
 :javascript
   $(document).ready( function() {
