@@ -58,7 +58,11 @@
               %span.text1{style: "font-weight: bold; font-size: -webkit-xxx-large; color: #7d7876;"} $9.99
               %p.text-2 Pay Annually
         %div.box1-btn
-          %button.btn.btn-block.btn-pr{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"} Sign Up For Now
+          -#%button.{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"} 
+          
+          = link_to "Sign Up For Now", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), {id: 'annual-plan-link', class: 'button btn btn-block btn-pr',style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"} if DateTime.now <= "8-8-2017".to_date
+
+          = link_to "Sign Up For Now", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), {id: 'monthly-plan-link', class: 'hidden button btn btn-block btn-pr',style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"} if DateTime.now <= "8-8-2017".to_date
 
       -#%ul.price
       -#  %li.header Pro
@@ -88,12 +92,16 @@
     $('#monthly-pay').removeClass('hidden');
     $('#annual-pay-btn').removeClass('active btn-info');
     $('#annual-pay').addClass('hidden');
+    $('#annual-plan-link').addClass('hidden');
+    $('#monthly-plan-link').removeClass('hidden');
   });
   $('#annual-pay-btn').click(function(){
     $('#monthly-pay-btn').removeClass('active btn-info');
     $('#monthly-pay').addClass('hidden');
     $('#annual-pay-btn').addClass('active btn-info');
     $('#annual-pay').removeClass('hidden');
+    $('#annual-plan-link').removeClass('hidden');
+    $('#monthly-plan-link').addClass('hidden');
   });
 
     // Create a Stripe client
