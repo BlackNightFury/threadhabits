@@ -74,7 +74,6 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 # Development and Test
 group :development do
-  gem 'pry-rails'
   gem 'better_errors'
   gem 'html2haml'
   gem 'rails_layout'
