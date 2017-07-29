@@ -6,8 +6,11 @@ class ChargesController < ApplicationController
   end
 
   def create
-    current_person.update_attributes(subscription_type: params[:subscription_type], subscription_created_at: DateTime.now)
+    if params[:subscription_type] == '1'
+      current_person.update_attributes(subscription_type: params[:subscription_type], subscription_created_at: DateTime.now)
+    end
     if current_person.card.present?
+      current_person.update_attributes(subscription_type: params[:subscription_type], subscription_created_at: DateTime.now)
       if params[:subscription_type] != '1'
         customer = Stripe::Customer.retrieve(current_person.stripe_customer)
         if params[:subscription_type] == '2'
