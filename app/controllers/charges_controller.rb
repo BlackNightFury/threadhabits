@@ -15,7 +15,7 @@ class ChargesController < ApplicationController
             :customer => customer.id,
             :plan => "basic-monthly",
           )
-        elsif params[:subscription_type] == '2'
+        elsif params[:subscription_type] == '3'
           Stripe::Subscription.create(
             :customer => customer.id,
             :plan => "basic-yearly",
