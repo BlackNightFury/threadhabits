@@ -24,19 +24,19 @@
       .form-group
         %button#load.btn.btn-primary.site-btn{"data-loading-text" => "<i class='fa fa-spinner fa-spin '></i> Processing", :type => "submit"} Save Information
   .form-group
-    %h2{:style => "text-align:center"} Simple Pricing
+    %h2{:style => "text-align:center; font-weight: 200;"} Simple Pricing
     - subscription_type = current_person.subscription_type
     - subscription_created_at = current_person.subscription_created_at
     .columns
-      %div.box1{style: "width:80%; height:270px; border:1px solid rgba(130, 130, 130, 0.7);text-align: center;border-radius: 10px;box-shadow: 3px 3px 33px -9px rgba(119, 119, 119, 0.46)"}
+      %div.box1{style: "width:93%; height:270px; border:1px solid rgba(130, 130, 130, 0.7);text-align: center;border-radius: 10px;box-shadow: 3px 3px 33px -9px rgba(119, 119, 119, 0.46)"}
         %div.inside-box{style: "margin-top: 20px"}
           %span.text1{style: "font-size: 18px"} Commission Based
         %div.box-price{style: "margin-top:20%"}
           %span.text1{style: "font-weight: bold; font-size: 35px; color: #7d7876;"} 3.5%
-          %p.text-2 On Each Sale
+          %p.text-2 of each sale
         %div.box1-btn
           -# %button.btn.btn-block.btn-inverse{style: "position:absolute; width:200px;bottom: -10px;left: 11%;color: white; background-color: black;"} Chose
-          = link_to "Choose", new_charge_path(subscription_type: 1, amount: 0, plan: 'Annual Plan'), { class: 'button btn btn-block btn-inverse',style: "position:absolute; width:200px;height:40px;bottom: -10px;left: 11%;color: white; background-color: black;font-size:15px;"} if DateTime.now <= "8-8-2017".to_date
+          = link_to "Choose", new_charge_path(subscription_type: 1, amount: 0, plan: 'Annual Plan'), { class: 'button btn btn-block btn-inverse',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} if DateTime.now <= "8-8-2017".to_date
       -#%ul.price
       -#  %li.header Default
       -#  %li.grey
@@ -45,21 +45,23 @@
       -#    %li.grey
       -#      =# link_to "Select", new_charge_path(subscription_type: 1)
     .columns
-      %div.box1{style: "width:80%; height:270px; border:1px solid rgba(130, 130, 130, 0.7);text-align: center;border-radius: 10px;box-shadow: 3px 3px 33px -9px rgba(119, 119, 119, 0.46)"}
+      %div.box1{style: "width:93%; height:270px; border:1px solid rgba(130, 130, 130, 0.7);text-align: center;border-radius: 10px;box-shadow: 3px 3px 33px -9px rgba(119, 119, 119, 0.46)"}
         %div.inside-box{style: "margin-top: 20px"}
           .btn-group
-            %button.btn.btn-info#monthly-pay-btn{:href => "javascript:;",class: 'active' } Paid Monthly
-            %button.btn#annual-pay-btn{:href => 'javascript:;'} Paid Anually
+            %button.btn.btn-info#monthly-pay-btn{:href => "javascript:;",class: 'active', style: "border-radius:5px;" } Paid Monthly
+            %button.btn#annual-pay-btn{:href => 'javascript:;', style: "border-radius:5px;"} paid annually
           %div.box-price#monthly-pay{:style => "margin-top:20%"}
             %span.text1{style: "font-weight: bold; font-size: 35px; color: #7d7876;"} $2
-            %p.text-2 Pay Monthly
+            %span{style: 'font-weight:400; font-size: 15px; color: #878483;'} /mo
+            %p.text-2 paid monthly
           %div.box-price#annual-pay{class: 'hidden', style: "margin-top:20%"}
             %span.text1{style: "font-weight: bold; font-size: 35px; color: #7d7876;"} $9.99
+            %span{style: 'font-weight:400; font-size: 15px; color: #878483;'} /year
             %p.text-2 Pay Annually
         %div.box1-btn
-          -#%button.{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"}
-          = link_to "Choose", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), {id: 'annual-plan-link', class: 'hidden button btn btn-block btn-pr',style: "position:absolute; width:200px;height:40px;bottom: -10px;left: 60%;color: white; background-color: black;font-size:15px;"} if DateTime.now <= "8-8-2017".to_date
-          = link_to "Choose", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), {id: 'monthly-plan-link', class: 'button btn btn-block btn-pr',style: "position:absolute; width:200px;height:40px;bottom: -10px;left: 60%;color: white; background-color: black;font-size:15px;"} if DateTime.now <= "8-8-2017".to_date
+          -#%button.{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"} 
+          = link_to "Choose", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), {id: 'annual-plan-link', class: 'button btn btn-block btn-pr',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} if DateTime.now <= "8-8-2017".to_date
+          = link_to "Choose", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), {id: 'monthly-plan-link', class: 'hidden button btn btn-block btn-pr',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px"} if DateTime.now <= "8-8-2017".to_date
 
       -#%ul.price
       -#  %li.header Pro
@@ -102,7 +104,7 @@
   });
 
     // Create a Stripe client
-    var stripe = Stripe('pk_live_2wcgrWtCDfdwPWVp86AVtPaW');
+    var stripe = Stripe('pk_test_FjE0tNXjjuewmORlrYp3SNQt');
 
     // Create an instance of Elements
     var elements = stripe.elements();
