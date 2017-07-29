@@ -71,20 +71,20 @@ class Person < ApplicationRecord
   validates_presence_of :first_name, :last_name, :username
   validates_presence_of :paypal_id, if: Proc.new{|person| person.setting_tab == "payments"}
   validates :username,
-  :presence => true,
-  :uniqueness => {
-    :case_sensitive => false
-  }
+            :presence => true,
+            :uniqueness => {
+                :case_sensitive => false
+            }
 
   scope :admins, -> { where(admin: true) }
 
   has_attached_file :avatar, styles: {
-    medium: "300x300#",
-    thumb: "100x100#"
+      medium: "300x300#",
+      thumb: "100x100#"
   }
 
   has_attached_file :cover_image, styles: {
-    medium: "851x315#"
+      medium: "851x315#"
   }, default_url: "#{S3_ASSET_PATH}/THbanner.png"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
@@ -182,7 +182,7 @@ class Person < ApplicationRecord
 
   def active_subscription?
     (self.subscription_type == 2 && self.subscription_created_at + 1.month >= DateTime.now) ||
-    (self.subscription_type == 3 && self.subscription_created_at + 1.year >= DateTime.now)     
+        (self.subscription_type == 3 && self.subscription_created_at + 1.year >= DateTime.now)
   end
 
   def setup_stripe_account(stripe_email, stripe_token)
