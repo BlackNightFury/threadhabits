@@ -37,7 +37,7 @@
         %div.box1-btn
           -# %button.btn.btn-block.btn-inverse{style: "position:absolute; width:200px;bottom: -10px;left: 11%;color: white; background-color: black;"} Chose
           - if current_person.active_subscription?
-            = link_to "Chose", charges_path(subscription_type: 1, plan: 'Default Plan'), {method: :post, class: 'button btn btn-block btn-inverse',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;" } if DateTime.now <= "8-8-2017".to_date
+            = link_to "Choose", charges_path(subscription_type: 1, plan: 'Default Plan'), {method: :post, class: 'button btn btn-block btn-inverse',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;" } if DateTime.now <= "8-8-2017".to_date
           - else
             %span.button.btn.btn-block.btn-inverse{style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} Current Plan
       -#%ul.price
