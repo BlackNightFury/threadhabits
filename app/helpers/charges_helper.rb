@@ -7,10 +7,10 @@ module ChargesHelper
 
   def stripe_params
     {
-      key: ENV['stripe_publishable_key'],
+      key: 'pk_test_FjE0tNXjjuewmORlrYp3SNQt',
       locale: 'auto',
       email: current_person.email,
-      amount: params[:amount].to_i * 100
+      amount: params[:amount].to_f * 100
     }
   end
 end

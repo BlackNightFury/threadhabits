@@ -40,12 +40,13 @@ class Payments::PaypalController < ApplicationController
         seller = Person.find(custom["seller_id"])
         unless TransactionDetail.find_by_transaction_id(params[:txn_id]).present?
           transaction = TransactionDetail.create(amount_of_transaction: params[:payment_gross], transaction_id: params[:txn_id], transaction_status: status, buyer: buyer.email, seller: seller.email, buyer_id: buyer.id, seller_id: seller.id)
-          if current_person.subcription_type = 2 && current_person.subscription_created_at + 1.momth >= DateTime.now
+          if seller.subscription_type == 2 && seller.subscription_created_at + 1.month >= DateTime.now
             #no payment
-          elsif current_person.subcription_type = 3 && current_person.subscription_created_at + 1.year >= DateTime.now
+          elsif seller.subscription_type == 3 && seller.subscription_created_at + 1.year >= DateTime.now
             #no charges
           else
             commision = (transaction.amount_of_transaction.to_f * 3.50)/100
+            commision = commision > 0.50 ? commision : 0.50
             customer = Stripe::Customer.retrieve(seller.stripe_customer)
             charge = Stripe::Charge.create customer: customer.id, amount: (commision * 100).to_i, description: '', currency: 'usd'
           end
