@@ -36,7 +36,10 @@
           %p.text-2 of each sale
         %div.box1-btn
           -# %button.btn.btn-block.btn-inverse{style: "position:absolute; width:200px;bottom: -10px;left: 11%;color: white; background-color: black;"} Chose
-          = link_to "Choose", new_charge_path(subscription_type: 1, amount: 0, plan: 'Annual Plan'), { class: 'button btn btn-block btn-inverse',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} if DateTime.now <= "8-8-2017".to_date
+          - if current_person.active_subscription?
+            = link_to "Chose", charges_path(subscription_type: 1, amount: 0, plan: 'Default Plan'), {method: :post, class: 'button btn btn-block btn-inverse',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;" } if DateTime.now <= "8-8-2017".to_date
+          - else
+            %span.button.btn.btn-block.btn-inverse{style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} Current Plan
       -#%ul.price
       -#  %li.header Default
       -#  %li.grey
@@ -59,10 +62,15 @@
             %span{style: 'font-weight:400; font-size: 15px; color: #878483;'} /year
             %p.text-2 Pay Annually
         %div.box1-btn
-          -#%button.{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"} 
-          = link_to "Choose", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), {id: 'annual-plan-link', class: 'hidden button btn btn-block btn-pr',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} if DateTime.now <= "8-8-2017".to_date
-          = link_to "Choose", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), {id: 'monthly-plan-link', class: 'button btn btn-block btn-pr',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px"} if DateTime.now <= "8-8-2017".to_date
-
+          -#%button.{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"}
+          - unless current_person.subscription_type == 3 && current_person.subscription_created_at > DateTime.now - 1.year
+            = link_to "Choose", new_charge_path(subscription_type: 3, amount: 9.99, plan: 'Annual Plan'), {id: 'annual-plan-link', class: 'hidden button btn btn-block btn-pr',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} if DateTime.now <= "8-8-2018".to_date
+          - else
+            %span.hidden.button.btn.btn-block.btn-pr#annual-plan-link{style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} Current Plan
+          - unless current_person.subscription_type == 2 && current_person.subscription_created_at > DateTime.now - 1.month
+            = link_to "Choose", new_charge_path(subscription_type: 2, amount: 2, plan: 'Monthly Plan'), {id: 'monthly-plan-link', class: 'button btn btn-block btn-pr',style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px"} if DateTime.now <= "8-8-2018".to_date
+          - else
+            %span.button.btn.btn-block.btn-pr#monthly-plan-link{style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} Current Plan
       -#%ul.price
       -#  %li.header Pro
       -#  %li.grey{style: subscription_type == 2 && current_person.active_subscription? ? "background-color:#4CAF50" : ''}
@@ -104,8 +112,8 @@
   });
 
     // Create a Stripe client
-    var stripe = Stripe('pk_test_FjE0tNXjjuewmORlrYp3SNQt');
-
+    var stripe = Stripe('pk_live_2wcgrWtCDfdwPWVp86AVtPaW');
+    // pk_test_FjE0tNXjjuewmORlrYp3SNQt
     // Create an instance of Elements
     var elements = stripe.elements();
 

@@ -7,8 +7,10 @@ class ChargesController < ApplicationController
 
   def create
     current_person.update_attributes(subscription_type: params[:subscription_type], subscription_created_at: DateTime.now)
-    customer = Stripe::Customer.retrieve(current_person.stripe_customer)
-    charge = Stripe::Charge.create customer: customer.id, amount: (params[:amount].to_f * 100).to_i, description: '', currency: 'usd'
+    unless params[:subscription_type] == '1'
+      customer = Stripe::Customer.retrieve(current_person.stripe_customer)
+      charge = Stripe::Charge.create customer: customer.id, amount: (params[:amount].to_f * 100).to_i, description: '', currency: 'usd'
+    end
     redirect_to  payments_settings_path
   end
 
