@@ -117,3 +117,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # For stripe payment methods
 gem 'stripe'
+gem 'rails_12factor', group: :production
