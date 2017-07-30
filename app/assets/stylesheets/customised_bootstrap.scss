@@ -167,34 +167,3 @@ ul.nav.navbar-nav.navbar-right.col-md-5.col-xs-5.col-sm-5.col-lg-5 {
 .brand_name {
   padding: 10px !important;
 }
-
-.btn-bottom-shadow {
-  -moz-box-shadow: 0 -1px #8821ff, 0px 3px #000;
-  -webkit-box-shadow: 0 -1px #8821ff, 0px 3px #000;
-  box-shadow: 0 -1px #8821ff, 0px 3px #000;
-}
-
-#monthly-pay-btn {
-  border-bottom-right-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-#annual-pay-btn {
-  border-bottom-left-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-}
-
-#monthly-pay-btn,
-#annual-pay-btn {
-  background: #fff;
-  border-color: #ddd;
-}
-
-#monthly-pay-btn:focus,
-#annual-pay-btn:focus {
-  outline: none;
-}
-
-.box1 .btn-info.active {
-  background: #353535 !important;
-  box-shadow: inset 3px 3px 5px #000;
-}
