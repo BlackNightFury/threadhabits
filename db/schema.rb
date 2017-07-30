@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713173421) do
+ActiveRecord::Schema.define(version: 20170727042414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,11 @@ ActiveRecord::Schema.define(version: 20170713173421) do
     t.string   "twitter_profile"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "access_code"
+    t.json     "card"
+    t.string   "stripe_token"
+    t.string   "stripe_customer"
+    t.integer  "subscription_type",        default: 1
+    t.datetime "subscription_created_at"
     t.index ["confirmation_token"], name: "index_people_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_people_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true, using: :btree
