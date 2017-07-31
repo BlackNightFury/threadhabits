@@ -46,7 +46,7 @@
         %div.box1-btn
           -# %button.btn.btn-block.btn-inverse{style: "position:absolute; width:200px;bottom: -10px;left: 11%;color: white; background-color: black;"} Chose
           - if current_person.active_subscription?
-            = link_to "Choose", charges_path(subscription_type: 1, plan: 'Default Plan'), {method: :post, class: 'button btn btn-block btn-inverse btn-bottom-shadow',style: "position:absolute; width:22%;height:40px;bottom: -10px;left: 12%;color: #fff; background-color: #353535;font-size:15px;border-radius:5px;" } if DateTime.now <= "8-8-2017".to_date
+            = link_to "Choose", charges_path(subscription_type: 1, plan: 'Default Plan'), {method: :post, class: 'button btn btn-block btn-inverse btn-bottom-shadow',style: "position:absolute; width:22%;height:40px;bottom: -10px;left: 15%;color: #fff; background-color: #4c4c4c;font-size:15px;border-radius:5px;" } if DateTime.now <= "8-8-2017".to_date
           - else
             %span.button.btn.btn-block.btn-inverse.btn-bottom-shadow{style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 12%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} Current Plan
       -#%ul.price
@@ -73,11 +73,11 @@
         %div.box1-btn
           -#%button.{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"}
           - unless current_person.subscription_type == 3 
-            = link_to "Choose", charges_path(subscription_type: 3, plan: 'Yearly Plan'), {method: :post, id: 'annual-plan-link', class: 'hidden button btn btn-block btn-pr btn-bottom-shadow',style: "position:absolute; width:22%;height:40px;bottom: -10px;left: 60%;color: #fff; background-color: #353535;font-size:15px;border-radius:5px;"} if DateTime.now <= "8-8-2017".to_date
+            = link_to "Choose", charges_path(subscription_type: 3, plan: 'Yearly Plan'), {method: :post, id: 'annual-plan-link', class: 'hidden button btn btn-block btn-pr btn-bottom-shadow',style: "position:absolute; width:22%;height:40px;bottom: -10px;left: 63%;color: #fff; background-color: #4c4c4c;font-size:15px;border-radius:5px;"} if DateTime.now <= "8-8-2017".to_date
           - else
             %span.hidden.button.btn.btn-block.btn-pr#annual-plan-link{style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} Current Plan
           - unless current_person.subscription_type == 2
-            = link_to "Choose", charges_path(subscription_type: 2, plan: 'Monthly Plan'), {method: :post, id: 'monthly-plan-link', class: 'button btn btn-block btn-pr btn-bottom-shadow',style: "position:absolute; width:22%;height:40px;bottom: -10px;left: 60%;color: #fff; background-color: #353535;font-size:15px;border-radius:5px"} if DateTime.now <= "8-8-2017".to_date
+            = link_to "Choose", charges_path(subscription_type: 2, plan: 'Monthly Plan'), {method: :post, id: 'monthly-plan-link', class: 'button btn btn-block btn-pr btn-bottom-shadow',style: "position:absolute; width:22%;height:40px;bottom: -10px;left: 63%;color: #fff; background-color: #4c4c4c;font-size:15px;border-radius:5px"} if DateTime.now <= "8-8-2017".to_date
           - else
             %span.button.btn.btn-block.btn-pr#monthly-plan-link{style: "position:absolute; width:25%;height:40px;bottom: -10px;left: 60%;color: white; background-color: #353535;font-size:15px;border-radius:5px;"} Current Plan
       -#%ul.price
