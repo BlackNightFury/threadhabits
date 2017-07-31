@@ -24,16 +24,19 @@
       .form-group
         %button#load.btn.btn-primary.site-btn{"data-loading-text" => "<i class='fa fa-spinner fa-spin '></i> Processing", :type => "submit"} Save Information
   .form-group
-    %h2{:style => "text-align:center; font-weight: 200;"} Simple Pricing
+    %h2{:style => "text-align:center; font-weight: 200; font-size: 32px; letter-spacing: 1px; color: #000;"} Simple Pricing
+    %hr{style: "border-top: 1px solid #dedede; width: 30%;"}
     - subscription_type = current_person.subscription_type
     - subscription_created_at = current_person.subscription_created_at
     .columns
       %div.box1{style: "width:93%; height:270px; border:1px solid rgba(130, 130, 130, 0.7);text-align: center;border-radius: 10px;box-shadow: 3px 3px 33px -9px rgba(119, 119, 119, 0.46)"}
         %div.inside-box{style: "margin-top: 20px"}
-          %span.text1{style: "font-size: 18px"} Commission Based
+          %span.text1{style: "font-size: 18px; color: #888787;"} Commission-based
+          %br
+          %span{style: "font-size: 14px; color: #888787; font-weight: 300;"} % of sale (default)
         %div.box-price{style: "margin-top:20%"}
-          %span.text1{style: "font-weight: bold; font-size: 35px; color: #7d7876;"} 3.5%
-          %p.text-2 of each sale
+          %span.text1{style: "font-weight: bolder; font-size: 39px; color: #545454;"} 3.5%
+          %p.text-2{style: "font-size: 14px; color: #888787;"} of each sale
         %div.box1-btn
           -# %button.btn.btn-block.btn-inverse{style: "position:absolute; width:200px;bottom: -10px;left: 11%;color: white; background-color: black;"} Chose
           - if current_person.active_subscription?
@@ -54,13 +57,13 @@
             %button.btn.btn-info#monthly-pay-btn{:href => "javascript:;",class: 'active', style: "border-radius: 5px;" } Paid Monthly
             %button.btn#annual-pay-btn{:href => 'javascript:;', style: "border-radius:5px;"} Paid Annually
           %div.box-price#monthly-pay{:style => "margin-top:20%"}
-            %span.text1{style: "font-weight: bold; font-size: 35px; color: #7d7876;"} $2
+            %span.text1{style: "font-weight: bolder; font-size: 39px; color: #545454;"} $2
             %span{style: 'font-weight:400; font-size: 15px; color: #878483;'} /mo
-            %p.text-2 Paid Monthly
+            %p.text-2{style: "font-size: 14px; color: #888787;"} Paid Monthly
           %div.box-price#annual-pay{class: 'hidden', style: "margin-top:20%"}
-            %span.text1{style: "font-weight: bold; font-size: 35px; color: #7d7876;"} $9.99
+            %span.text1{style: "font-weight: bolder; font-size: 39px; color: #545454;"} $9.99
             %span{style: 'font-weight:400; font-size: 15px; color: #878483;'} /year
-            %p.text-2 Pay Annually
+            %p.text-2{style: "font-size: 14px; color: #888787;"} Pay Annually
         %div.box1-btn
           -#%button.{style: "position:absolute; width:200px;bottom: -10px;left: 60%;color: white; background-color: black;"}
           - unless current_person.subscription_type == 3 
@@ -108,8 +111,9 @@
 
   #monthly-pay-btn,
   #annual-pay-btn {
-    background: #fff;
-    border-color: #ddd;
+    border-color: #c3c3c3;
+    background-color: #fff;
+    font-weight: 400;
   }
 
   #monthly-pay-btn:focus,
@@ -118,8 +122,10 @@
   }
 
   .box1 .btn-info.active {
-    background: #353535 !important;
-    box-shadow: inset 3px 3px 5px #000;
+    border-color: #000 !important;
+    background-color: #4c4c4c !important;
+    box-shadow: inset 4px 4px 8px #000000 !important;
+    font-weight: 300 !important;
   }
 
 
