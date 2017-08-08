@@ -187,8 +187,8 @@
   });
 
     // Create a Stripe client
-    var stripe = Stripe('pk_live_2wcgrWtCDfdwPWVp86AVtPaW');
-    // pk_test_FjE0tNXjjuewmORlrYp3SNQt
+    var stripe = Stripe('#{Rails.application.secrets.stripe_publishable_key}');
+
     // Create an instance of Elements
     var elements = stripe.elements();
 
