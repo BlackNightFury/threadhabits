@@ -18,27 +18,25 @@
           .col-md-12.col-sm-12.col-xs-12
             .top-banner
               .row
-                .show-on-small-screen
-                  %h1
+                .col-md-4.col-sm-4
+                  %h1.show-on-small-screen
                     BUY AND SELL
-                  %h2
+                  %h2.show-on-small-screen
                     Browse our selection of internationally-sourced inventory, sell your clothing, and more.
-                .hide-on-small-screen
-                  .col-md-4.col-sm-4
-                    %h1
-                      BROWSE AND BUY
-                    %h2
-                      Browse our selection of internationally-sourced clothing sold by our global community
-                  .col-md-4.col-sm-4
-                    %h1
-                      SELL YOUR ITEMS
-                    %h2
-                      Selling on our marketplace is easy, cost-efficient, and saves time. It’s free to list items, and we only take a small fee of 3.5% if your item sells.
-                  .col-md-4.col-sm-4
-                    %h1
-                      FIND YOUR PIECE
-                    %h2
-                      Our inventory is uploaded by thousands of sellers worldwide. If you’re looking for a piece at a lower price, or that’s sold out everwhere else, you may be able to find it here.
+                  %h1.hide-on-small-screen
+                    BROWSE AND BUY
+                  %h2.hide-on-small-screen
+                    Browse our selection of internationally-sourced clothing sold by our global community
+                .col-md-4.col-sm-4
+                  %h1.hide-on-small-screen
+                    SELL YOUR ITEMS
+                  %h2.hide-on-small-screen
+                    Selling on our marketplace is easy, cost-efficient, and saves time. It’s free to list items, and we only take a small fee of 3.5% if your item sells.
+                .col-md-4.col-sm-4
+                  %h1.hide-on-small-screen
+                    FIND YOUR PIECE
+                  %h2.hide-on-small-screen
+                    Our inventory is uploaded by thousands of sellers worldwide. If you’re looking for a piece at a lower price, or that’s sold out everwhere else, you may be able to find it here.
       = yield(:heading_section) #Top Heading Section
       = render 'layouts/components/messages' unless @landing_banner
       %div.row.banner-row
