@@ -26,7 +26,11 @@
     }
   }
 }
-
+@media only screen and (min-width : 767px) {
+  .filter-panel{
+    border: 1px solid #3c3c3c;
+  }
+}
 @media only screen and (max-width : 767px) {
   .filter-board {
   @include border-radius(4px);
