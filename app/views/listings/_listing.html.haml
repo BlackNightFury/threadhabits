@@ -10,4 +10,4 @@
         %h4{style: "text-align:right;float: right;padding-right: 10px;font-weight: normal;font-size: 14px;margin-top: 5px;margin-bottom: 10px;"}= (listing.size.name.split('/').first rescue '')
         %p.content{style: "margin-bottom: 5px;"}
           = listing.name
-      %p.price{style: "margin-bottom: 0px;"}= number_to_currency listing.price
+      %p.price{style: "margin-bottom: 0px;"}= number_to_currency listing.price.to_i, precision: 0
