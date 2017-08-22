@@ -337,9 +337,13 @@
     if $('#infinite-scrolling').size() > 0
       $(window).on 'scroll', ->
         more_listings_url = $('.pagination li.next a').attr('href')
+        more_listings_url_fix = $('.pagination .next_page').attr('href')
         if more_listings_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
             $('.pagination').html('<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i><strong class="load-more-listing">Loading More Listings...</strong>')
             $.getScript more_listings_url
+        else if more_listings_url_fix && $(window).scrollTop() > $(document).height() - $(window).height() - 60
+            $('.pagination').html('<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i><strong class="load-more-listing">Loading More Listings...</strong>')
+            $.getScript more_listings_url_fix
         return
       return
 
