@@ -65,7 +65,7 @@
         = @listing.condition
         %br
         %label Price:
-        = number_to_currency @listing.price
+        = number_to_currency @listing.price, precision: 0
         %br
         -# .buy-actions
           = link_to 'BUY IT NOW', root_url, target: "_blank", class: "btn"

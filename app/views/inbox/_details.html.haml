@@ -14,7 +14,7 @@
               = link_to detail_listings_path @chat_room.listing.slug do
                 = @chat_room.listing.name
               %small.pull-right
-                = number_to_currency @chat_room.listing.price
+                = number_to_currency @chat_room.listing.price, precision: 0
             .item-info
               %label
                 Designer/Company:

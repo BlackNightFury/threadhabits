@@ -20,7 +20,7 @@
             %h1
               = @listing.company.try(:name)
               .pull-right
-                = number_to_currency @listing.price
+                = number_to_currency @listing.price, precision: 0
           .heading-bottom
             %span.item-name
               = @listing.name
@@ -114,7 +114,7 @@
       %li.row &nbsp;
       %li= @listing.name
       %li
-        %span.pull-left= number_to_currency @listing.price
+        %span.pull-left= number_to_currency @listing.price, precision: 0
         - if person_signed_in?
           %span.pull-right
             - if current_person.has_followed?(@listing.person)
