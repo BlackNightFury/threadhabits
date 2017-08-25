@@ -71,6 +71,16 @@ class Listing < ApplicationRecord
     self.errors[attribute_name].blank?
   end
 
+  def to_json
+    hash = self.attributes
+    hash[:display_image_url] = self.display_image(:medium)
+    hash[:upload_urls] = []
+    self.uploads.each do |upload|
+      hash[:upload_urls] << upload.image.url(:medium)
+    end
+    hash.to_json
+  end
+
   def self.fetch_by_filters(filters)
     listings = all.includes(:size, :company).order("listings.created_at desc")
     conditions = []
