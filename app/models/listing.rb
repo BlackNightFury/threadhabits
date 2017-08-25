@@ -71,14 +71,14 @@ class Listing < ApplicationRecord
     self.errors[attribute_name].blank?
   end
 
-  def to_json
-    hash = self.attributes
+  def as_json(options)
+    hash = super(options)
     hash[:display_image_url] = self.display_image(:medium)
     hash[:upload_urls] = []
     self.uploads.each do |upload|
       hash[:upload_urls] << upload.image.url(:medium)
     end
-    hash.to_json
+    hash
   end
 
   def self.fetch_by_filters(filters)
