@@ -48,7 +48,7 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @listings }
+      format.json { render json: {status: 200, listings: @listings }}
     end
   end
 
