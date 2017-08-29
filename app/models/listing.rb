@@ -72,13 +72,26 @@ class Listing < ApplicationRecord
   end
 
   def as_json(options)
-    hash = super(options)
-    hash[:display_image_url] = self.display_image(:medium)
-    hash[:upload_urls] = []
-    self.uploads.each do |upload|
-      hash[:upload_urls] << upload.image.url(:medium)
+    if options.blank?
+      hash = super()
+      hash[:category_name] = self.category.try(:name).to_s
+      hash[:person_first_name] = self.person.try(:first_name).to_s
+      hash[:person_last_name] = self.person.try(:last_name).to_s
+      hash[:price_display] = ActionController::Base.helpers.number_to_currency self.price.to_i, precision: 0
+      hash[:last_updated_at] = self.updated_at.to_i
+      hash[:company_name] = self.company.try(:name).to_s
+      hash[:size_name] = self.size.name.split('/').first rescue ''
+
+      hash[:display_image_url] = self.display_image(:medium)
+      hash[:upload_urls] = []
+      self.uploads.each do |upload|
+        hash[:upload_urls] << upload.image.url(:medium)
+      end
+      return hash
+    else 
+      return super(options)
     end
-    hash
+    
   end
 
   def self.fetch_by_filters(filters)
