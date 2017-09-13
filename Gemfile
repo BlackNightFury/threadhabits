@@ -39,6 +39,7 @@ gem 'bootstrap-sass'
 
 # Authentication Library
 gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 
 # Font Awesome
 gem "font-awesome-rails"

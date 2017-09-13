@@ -3,6 +3,12 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/devel/emails"
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :sessions, only: [:create]
+    end
+  end
+
   ActiveAdmin.routes(self)
   devise_for :people, controllers: { registrations: "people/registrations" }
 

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
   before_action :set_filter_params, :s3_presign_request, :device_variants
 
+  acts_as_token_authentication_handler_for Person, fallback: :none
+
   helper_method :mobile_device?
 
   def landing_banner(flag = false) @landing_banner = !person_signed_in? && flag end;
