@@ -191,4 +191,8 @@ class Person < ApplicationRecord
     customer = Stripe::Customer.create(email: stripe_email, source: stripe_token)
   end
 
+	def self.find_by_email_or_username(email)
+		person = Person.where(["username = :value OR lower(email) = lower(:value)", { :value => email }]).first
+	end
+
 end
