@@ -28,13 +28,17 @@
         %em
           (#{@minimum_password_length} characters minimum)
       %br/
-      = f.password_field :password, autocomplete: "off", class: "form-control input-lg"
-    .form-group
-      = f.label :password_confirmation
-      %br/
-      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control input-lg"
+      = f.password_field :password, autocomplete: "off", class: "form-control input-lg", id: "password_field"
+      = f.hidden_field :password_confirmation, id: "password_confirmation_field"
     .form-group
       = f.check_box :terms
       = f.label :terms, "I accept the terms of use"
     .form-actions
       = f.submit "Create Account", class: "btn btn-primary site-btn"
+
+    :javascript
+    $(document).ready( function() {
+      $('#password_field').keyup(function() {
+        $('#password_confirmation_field').val($(this).val());
+      });
+    } );

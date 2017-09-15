@@ -2,9 +2,10 @@ class Api::V1::RegistrationsController < ActionController::Base
 
   def create
     user = Person.new(person_params)
+    user.password_confirmation = person_params[:password]
+    user.skip_confirmation! unless user.nil?
     if user.save
-      render json: {message: "User succesfully created"}, status: :created
-      return
+      render json: user.as_json, status: :created
     else
       warden.custom_failure!
       render json: user.errors, status: :unprocessable_entity
@@ -14,6 +15,6 @@ class Api::V1::RegistrationsController < ActionController::Base
 	private
 
 	def person_params
-		params.require(:person).permit(:email,:first_name, :last_name, :username, :password, :password_confirmation)
+		params.require(:person).permit(:email,:first_name, :last_name, :username, :password)
 	end
 end
