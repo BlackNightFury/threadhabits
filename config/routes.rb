@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create]
       resources :registrations, only: [:create]
       resources :passwords, only: [:create]
+      resources :profiles, only: [:show], param: :username
     end
   end
 

@@ -193,6 +193,20 @@ class Person < ApplicationRecord
 
 	def self.find_by_email_or_username(email)
 		person = Person.where(["username = :value OR lower(email) = lower(:value)", { :value => email }]).first
-	end
+  end
+
+  def profile_as_json(page)
+  r = {}
+  r[:username] = username
+  r[:first_name] = first_name
+  r[:last_name] = last_name
+  r[:avatar_url] = avatar.url(:medium)
+  r[:cover_photo_url] = cover_image.url(:medium)
+  r[:followers] = followers.count
+  r[:following] = followings.count
+  r[:location] = location
+  r[:inventory_list] = listings.paginate(:page => page, :per_page => Listing::PER_PAGE)
+  r
+  end
 
 end
