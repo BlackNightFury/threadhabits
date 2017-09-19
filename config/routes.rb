@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :registrations, only: [:create]
       resources :passwords, only: [:create]
       resources :profiles, only: [:show], param: :username
+      post "/updateProfile" => "users#update"
     end
   end
 
