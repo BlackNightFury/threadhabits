@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :passwords, only: [:create]
       resources :profiles, only: [:show], param: :username
       post "/updateProfile" => "users#update"
+      post "/updateAccount" => "users#update_account"
+      post "/updatePassword" => "users#update_password"
     end
   end
 
