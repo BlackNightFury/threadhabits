@@ -5,6 +5,7 @@ class Api::V1::UsersController < Api::V1::ApiController
 
  #first_name, last_name, location, about_you, avatar, cover_photo, phone_number, about_you, facebook_profile, twitter_profile, instagram_profile, avatar and covert_photo will be attached as multi-part
   #POST /api/v1/updateProfile
+  #Header User-Token
   def update
     @user = @current_user
     @user.first_name = params[:first_name] if params[:first_name].present?
@@ -28,6 +29,8 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   #POST /api/v1/updateAccount
+  #params email, username
+  #Header User-Token
   def update_account
     @user = @current_user
     @user.email = params[:email] if params[:email].present?
@@ -40,6 +43,8 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   #POST /api/v1/updatePassword
+  #params password
+  #Header User-Token
   def update_password
     @user = @current_user
     @user.password = params[:password] if params[:password].present?
