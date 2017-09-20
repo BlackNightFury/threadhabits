@@ -68,6 +68,7 @@ class Person < ApplicationRecord
 
   SUBSCRIPTION_TYPES = {default: 0, one_month: 1, one_year: 2}
   after_create :generate_default_preferences, :notify_admin
+  before_save :ensure_authentication_token
 
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
@@ -208,5 +209,20 @@ class Person < ApplicationRecord
   r[:inventory_list] = listings.paginate(:page => page, :per_page => Listing::PER_PAGE)
   r
   end
+   def ensure_authentication_token
+      if authentication_token.blank?
+        self.authentication_token = generate_authentication_token
+      end
+    end
+
+  private
+   
+
+    def generate_authentication_token
+      loop do
+        token = Devise.friendly_token
+        break token unless Person.find_by(authentication_token: token)
+      end
+    end 
 
 end
