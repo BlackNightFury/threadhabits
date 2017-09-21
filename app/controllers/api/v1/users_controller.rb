@@ -55,6 +55,41 @@ class Api::V1::UsersController < Api::V1::ApiController
     end
   end
 
+  #{    "notification_preferences" : {"new_message" : "true", "new_payment" : "true", "new_follower" : "true"}  }
+
+  #POST /api/v1/updateNotification
+  #params paypal_id
+  #Header User-Token
+  #Contwnt-Type: application/json
+  def update_notification
+     @preference = @current_user.preferences.notifications.first
+    if @preference.blank?
+      @preference = @current_user.preferences.notifications.build(preference_type: "Notification")
+    end
+    @preference.data = params[:notification_preferences] || {}
+    if @preference.save
+      render json: @user.as_json, status: :ok
+    else
+      render json: @preference.errors.as_json, status: :unprocessable_entity
+    end
+  end
+
+
+  #POST /api/v1/updatePayment
+  #params paypal_id
+  #Header User-Token
+  def update_payment
+    @user = @current_user
+    @user.paypal_id = params[:paypal_id] if params[:paypal_id].present?
+    if @user.save
+      render json: @user.as_json, status: :ok
+    else
+      render json: @user.errors.as_json, status: :unprocessable_entity
+    end
+  end
+
+
+
   private
 
   def update_location
