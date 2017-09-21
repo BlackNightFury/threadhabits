@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post "/updatePassword" => "users#update_password"
       post "/updateNotification" => "users#update_notification"
       post "/updatePayment" => "users#update_payment"
+      post "/updateCard" => "users#update_card"
     end
   end
 
