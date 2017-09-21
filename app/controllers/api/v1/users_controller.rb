@@ -22,7 +22,7 @@ class Api::V1::UsersController < Api::V1::ApiController
       #update Location
       update_location
 
-      render json: @user.as_json.merge(avatar_url: @user.avatar.try(:url), cover_url: @user.cover_image.try(:url), location: @user.address), status: :ok
+      render json: @user.as_json, status: :ok
     else
       render json: @user.errors.as_json, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class Api::V1::UsersController < Api::V1::ApiController
     @user.email = params[:email] if params[:email].present?
     @user.username = params[:username] if params[:username].present?
     if @user.save
-      render json: @user.as_json.merge(avatar_url: @user.avatar.try(:url), cover_url: @user.cover_image.try(:url), location: @user.address), status: :ok
+      render json: @user.as_json, status: :ok
     else
       render json: @user.errors.as_json, status: :unprocessable_entity
     end
@@ -49,7 +49,7 @@ class Api::V1::UsersController < Api::V1::ApiController
     @user = @current_user
     @user.password = params[:password] if params[:password].present?
     if @user.save
-      render json: @user.as_json.merge(avatar_url: @user.avatar.try(:url), cover_url: @user.cover_image.try(:url), location: @user.address), status: :ok
+      render json: @user.as_json, status: :ok
     else
       render json: @user.errors.as_json, status: :unprocessable_entity
     end
