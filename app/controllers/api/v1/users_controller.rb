@@ -90,7 +90,7 @@ class Api::V1::UsersController < Api::V1::ApiController
     card_detail = params["card_token"]["card"].as_json
     stripe_token = params["card_token"]["id"]
     customer = Stripe::Customer.create source: stripe_token
-    if current_person.update_attributes({card: card_detail, stripe_token: stripe_token, stripe_customer: customer.id})
+    if @user.update_attributes({card: card_detail, stripe_token: stripe_token, stripe_customer: customer.id})
       render json: { success: true, notice: "Card details updated successfully" }
     else
       render json: { success: false, notice: "Something went wrong please try again." }
@@ -99,13 +99,13 @@ class Api::V1::UsersController < Api::V1::ApiController
 
 
   #POST /api/v1/updateCard
-  #params {"card_token"=>{"id"=>"tok_1B4T4bIu8gpmxJx9TENQJNnO", "object"=>"token", "card"=>{"id"=>"card_1B4T4bIu8gpmxJx9F3RV0Qsh", "object"=>"card", "address_city"=>"", "address_country"=>"", "address_line1"=>"", "address_line1_check"=>"", "address_line2"=>"", "address_state"=>"", "address_zip"=>"11009", "address_zip_check"=>"unchecked", "brand"=>"Visa", "country"=>"US", "cvc_check"=>"unchecked", "dynamic_last4"=>"", "exp_month"=>"4", "exp_year"=>"2019", "funding"=>"credit", "last4"=>"4242", "name"=>"", "tokenization_method"=>""}, "client_ip"=>"112.196.147.19", "created"=>"1505994149", "livemode"=>"false", "type"=>"card", "used"=>"false"}}
+  #params {"card_token" : {"id":"tok_1B4T4bIu8gpmxJx9TENQJNnO", "object":"token", "card":{"id":"card_1B4T4bIu8gpmxJx9F3RV0Qsh", "object":"card", "address_city":"", "address_country":"", "address_line1":"", "address_line1_check":"", "address_line2":"", "address_state":"", "address_zip":"11009", "address_zip_check":"unchecked", "brand":"Visa", "country":"US", "cvc_check":"unchecked", "dynamic_last4":"", "exp_month":"4", "exp_year":"2019", "funding":"credit", "last4":"4242", "name":"", "tokenization_method":""}, "client_ip":"112.196.147.19", "created":"1505994149", "livemode":"false", "type":"card", "used":"false"}}
   #Header User-Token
   def update_card
     card_detail = params["card_token"]["card"].as_json
     stripe_token = params["card_token"]["id"]
     customer = Stripe::Customer.create source: stripe_token
-    if current_person.update_attributes({card: card_detail, stripe_token: stripe_token, stripe_customer: customer.id})
+    if @user.update_attributes({card: card_detail, stripe_token: stripe_token, stripe_customer: customer.id})
       render json: { success: true, notice: "Card details updated successfully" }
     else
       render json: { success: false, notice: "Something went wrong please try again." }
